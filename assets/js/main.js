@@ -186,32 +186,32 @@
     var pulsante = document.querySelector("[data-cta-fissa]");
     var video = document.getElementById("video");
     var modulo = document.querySelector("[data-modulo]");
-    if (!pulsante || !video || !modulo || !("IntersectionObserver" in window)) return;
+    if (!pulsante || !video || !modulo) return;
 
-    var videoSuperato = false;
-    var moduloVisibile = false;
+    var inAttesa = false;
 
+    // Compare dopo la sezione video, sparisce quando il modulo è sullo schermo.
     function aggiorna() {
-      var mostra = videoSuperato && !moduloVisibile;
+      inAttesa = false;
+      var altezza = window.innerHeight || document.documentElement.clientHeight;
+      var v = video.getBoundingClientRect();
+      var m = modulo.getBoundingClientRect();
+      var moduloVisibile = m.top < altezza && m.bottom > 0;
+      var mostra = v.bottom <= 0 && !moduloVisibile;
+      if (mostra === pulsante.classList.contains("visibile")) return;
       pulsante.classList.toggle("visibile", mostra);
       pulsante.setAttribute("aria-hidden", mostra ? "false" : "true");
       pulsante.tabIndex = mostra ? 0 : -1;
     }
 
-    new IntersectionObserver(function (voci) {
-      voci.forEach(function (voce) {
-        videoSuperato = !voce.isIntersecting && voce.boundingClientRect.bottom <= 0;
-      });
-      aggiorna();
-    }).observe(video);
+    function richiedi() {
+      if (inAttesa) return;
+      inAttesa = true;
+      window.requestAnimationFrame(aggiorna);
+    }
 
-    new IntersectionObserver(function (voci) {
-      voci.forEach(function (voce) {
-        moduloVisibile = voce.isIntersecting;
-      });
-      aggiorna();
-    }).observe(modulo);
-
+    window.addEventListener("scroll", richiedi, { passive: true });
+    window.addEventListener("resize", richiedi);
     aggiorna();
   }
 
