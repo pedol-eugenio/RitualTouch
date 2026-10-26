@@ -76,7 +76,10 @@
   --contenitore: 72rem;
   --misura: 37rem;
   --spazio-sezione: clamp(4.75rem, 2.75rem + 7vw, 9.5rem);
-  --raggio: 6px;
+  --raggio: 6px;          /* campi del modulo */
+  --raggio-grande: 10px;  /* riquadri: video, schede, modulo, foto */
+
+  color-scheme: only light; /* evita che i browser scuriscano il sito da soli */
 }
 
 /* ---------- Temi delle sezioni ---------- */
@@ -123,7 +126,7 @@ body {
   background-color: var(--verde);
   color: var(--avorio);
   font-family: var(--font-testo);
-  font-size: 1.125rem;
+  font-size: clamp(1.125rem, 1.08rem + 0.18vw, 1.1875rem);
   line-height: 1.6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -151,6 +154,15 @@ p,
 ul {
   margin: 0;
 }
+p {
+  text-wrap: pretty; /* evita parole isolate a fine paragrafo */
+}
+a,
+button,
+input,
+label {
+  -webkit-tap-highlight-color: rgba(201, 166, 107, 0.18);
+}
 img,
 svg {
   display: block;
@@ -169,8 +181,10 @@ a {
 .tema-verde2 a {
   text-decoration-color: var(--oro);
 }
-a:hover {
-  text-decoration-thickness: 2px;
+@media (hover: hover) {
+  a:hover {
+    text-decoration-thickness: 2px;
+  }
 }
 :focus-visible {
   outline: 3px solid var(--focus, var(--oro));
@@ -197,7 +211,7 @@ a:hover {
   max-width: var(--misura);
 }
 .titolo-sezione {
-  font-size: clamp(2.125rem, 1.6rem + 2vw, 3.125rem);
+  font-size: clamp(1.875rem, 1.45rem + 1.9vw, 3.125rem);
 }
 .titolo-sezione::before {
   content: "";
@@ -270,18 +284,24 @@ a:hover {
   background-color: var(--oro);
   color: var(--verde);
 }
-.pulsante--oro:hover {
-  background-color: var(--oro-chiaro);
+@media (hover: hover) {
+  .pulsante--oro:hover {
+    background-color: var(--oro-chiaro);
+  }
+  .pulsante--contorno:hover {
+    background-color: rgba(201, 166, 107, 0.14);
+  }
+}
+.pulsante--oro:active {
+  background-color: #bb9759;
 }
 .pulsante--contorno {
   background-color: transparent;
   border-color: var(--oro);
   color: var(--testo);
 }
-.pulsante--contorno:hover {
-  background-color: rgba(201, 166, 107, 0.14);
-}
-.pulsante[disabled] {
+.pulsante[disabled],
+.pulsante[disabled]:hover {
   background-color: transparent;
   border-color: rgba(201, 166, 107, 0.45);
   color: rgba(242, 236, 223, 0.6);
@@ -308,17 +328,22 @@ a:hover {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 56rem;
+  max-width: 60rem;
   margin-inline: auto;
+  padding-bottom: 4vh; /* porta il blocco poco sopra il centro: più equilibrato */
 }
 .hero .logo__simbolo {
-  height: clamp(2.75rem, 2rem + 2.5vw, 4rem);
+  height: clamp(3rem, 2.2rem + 2.5vw, 4.25rem);
 }
 .hero h1 {
   margin-top: clamp(1.75rem, 1rem + 4vh, 3.5rem);
   max-width: 28ch;
-  font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
-  line-height: 1.13;
+  font-size: clamp(2rem, 1.3rem + 3vw, 4.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.hero h1 .insieme {
+  white-space: nowrap; /* tiene unite «per gli altri,» e «attenzioni: tu.» */
 }
 .hero h1 em {
   font-style: italic;
@@ -327,8 +352,8 @@ a:hover {
 .hero__sottotitolo {
   margin-top: 1.25rem;
   text-wrap: balance;
-  max-width: 32rem;
-  font-size: clamp(1.125rem, 1rem + 0.45vw, 1.3125rem);
+  max-width: 34rem;
+  font-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
   color: var(--tenue);
 }
 .hero .pulsante {
@@ -370,14 +395,16 @@ a:hover {
   margin: 0;
   padding: 1rem 1.5rem;
   border: 0;
-  border-radius: var(--raggio);
+  border-radius: var(--raggio-grande);
   overflow: hidden;
   font: inherit;
   color: var(--avorio);
   text-align: center;
   background-color: var(--verde);
   background-image: radial-gradient(75% 85% at 50% 42%, var(--verde-2) 0%, var(--verde) 72%);
-  box-shadow: 0 28px 56px -32px rgba(19, 42, 36, 0.6);
+  box-shadow:
+    inset 0 0 0 1px rgba(201, 166, 107, 0.2),
+    0 34px 64px -40px rgba(19, 42, 36, 0.5);
 }
 .video__cornice .logo__simbolo {
   height: clamp(2.5rem, 1.4rem + 4.5vw, 5rem);
@@ -417,9 +444,13 @@ a:hover {
   border-width: 0.6rem 0 0.6rem 1rem;
   border-color: transparent transparent transparent var(--avorio);
 }
-.video__copertina:hover .video__play,
 .video__copertina:focus-visible .video__play {
   background-color: rgba(201, 166, 107, 0.2);
+}
+@media (hover: hover) {
+  .video__copertina:hover .video__play {
+    background-color: rgba(201, 166, 107, 0.2);
+  }
 }
 .video__iframe {
   display: block;
@@ -437,6 +468,9 @@ a:hover {
 }
 
 /* ---------- Prima Cerchia ---------- */
+.cerchia {
+  background-image: radial-gradient(55% 45% at 80% 30%, rgba(201, 166, 107, 0.09) 0%, rgba(201, 166, 107, 0) 70%);
+}
 .cerchia__griglia {
   display: grid;
   gap: 2.75rem;
@@ -461,7 +495,7 @@ a:hover {
   gap: 1.3rem;
   padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
   border: 1px solid rgba(201, 166, 107, 0.28);
-  border-radius: 10px;
+  border-radius: var(--raggio-grande);
   background-color: var(--verde-2);
 }
 .campo {
@@ -493,6 +527,14 @@ a:hover {
   outline: 3px solid var(--oro);
   outline-offset: 2px;
 }
+.campo input:-webkit-autofill,
+.campo input:-webkit-autofill:hover,
+.campo input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--verde);
+  -webkit-box-shadow: 0 0 0 100px var(--avorio) inset;
+  box-shadow: 0 0 0 100px var(--avorio) inset;
+  caret-color: var(--verde);
+}
 .campo input[aria-invalid="true"],
 .consenso input[aria-invalid="true"] {
   border-color: var(--corallo);
@@ -510,11 +552,53 @@ a:hover {
   align-items: start;
 }
 .consenso input {
+  -webkit-appearance: none;
+  appearance: none;
+  display: grid;
+  place-content: center;
   width: 1.5rem;
   height: 1.5rem;
   margin: 0.12rem 0 0;
-  accent-color: var(--oro);
+  border: 1.5px solid rgba(242, 236, 223, 0.75);
+  border-radius: 5px;
+  background-color: transparent;
   cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.consenso input::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.42rem;
+  border-left: 2px solid var(--verde);
+  border-bottom: 2px solid var(--verde);
+  transform: translateY(-0.08rem) rotate(-45deg) scale(0);
+  transition: transform 0.15s ease;
+}
+@media (hover: hover) {
+  .consenso input:hover {
+    border-color: var(--oro);
+  }
+}
+.consenso input:checked {
+  border-color: var(--oro);
+  background-color: var(--oro);
+}
+.consenso input[aria-invalid="true"] {
+  border-color: var(--corallo);
+  border-width: 2px;
+}
+.consenso input:checked::before {
+  transform: translateY(-0.08rem) rotate(-45deg) scale(1);
+}
+.consenso input:focus-visible {
+  outline: 3px solid var(--oro);
+  outline-offset: 2px;
+}
+@media (forced-colors: active) {
+  .consenso input {
+    -webkit-appearance: auto;
+    appearance: auto;
+  }
 }
 .consenso label {
   font-size: 1rem;
@@ -532,11 +616,13 @@ a:hover {
 .modulo__stato {
   font-size: 1rem;
   text-align: center;
+  text-wrap: balance;
   color: var(--oro);
 }
 .modulo__rassicurazione {
   font-size: 1rem;
   text-align: center;
+  text-wrap: balance;
   color: var(--tenue);
 }
 
@@ -548,7 +634,7 @@ a:hover {
 }
 .modo {
   padding: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
-  border-radius: var(--raggio);
+  border-radius: var(--raggio-grande);
   background-color: var(--beige);
 }
 .modo h3 {
@@ -591,6 +677,9 @@ a:hover {
 }
 
 /* ---------- Chi è Andrea ---------- */
+.andrea {
+  background-image: radial-gradient(45% 40% at 50% 22%, rgba(201, 166, 107, 0.1) 0%, rgba(201, 166, 107, 0) 70%);
+}
 .andrea__griglia {
   display: grid;
   gap: 3rem;
@@ -607,14 +696,15 @@ a:hover {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: var(--raggio);
+  border-radius: var(--raggio-grande);
+  background-color: var(--verde);
 }
 .andrea__foto::after {
   content: "";
   position: absolute;
   inset: 0.85rem -0.85rem -0.85rem 0.85rem;
   border: 1px solid var(--linea);
-  border-radius: calc(var(--raggio) + 2px);
+  border-radius: calc(var(--raggio-grande) + 2px);
   pointer-events: none;
 }
 .andrea__testo p {
@@ -694,9 +784,21 @@ a:hover {
 
 /* ---------- Pagine di testo (privacy, cookie) ---------- */
 .testata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   padding: 1.25rem var(--margine);
   border-bottom: 1px solid rgba(19, 42, 36, 0.12);
   --focus: var(--verde);
+}
+.testata__torna {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration-color: var(--oro);
 }
 .testata .logo__scritta {
   font-size: 0.875rem;
@@ -768,11 +870,11 @@ a:hover {
 
 /* ---------- Dissolvenze all'ingresso (disattivate con "riduci movimento") ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .dissolvenze [data-dissolvenza] {
-    transition: opacity 1s ease;
-  }
   .dissolvenze [data-dissolvenza]:not(.visibile) {
     opacity: 0;
+  }
+  .dissolvenze [data-dissolvenza].visibile {
+    transition: opacity 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -813,6 +915,9 @@ a:hover {
     margin: 0;
     justify-self: end;
   }
+  .andrea {
+    background-image: radial-gradient(35% 55% at 30% 50%, rgba(201, 166, 107, 0.1) 0%, rgba(201, 166, 107, 0) 70%);
+  }
 }
 /* Telefoni molto piccoli o browser di Instagram con poco spazio in altezza */
 @media (max-width: 47.99em) and (max-height: 540px) {
@@ -827,7 +932,7 @@ a:hover {
   }
   .hero h1 {
     margin-top: 1.25rem;
-    font-size: 1.75rem;
+    font-size: 1.875rem;
   }
   .hero__sottotitolo {
     margin-top: 0.85rem;

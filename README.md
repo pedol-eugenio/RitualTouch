@@ -13,8 +13,10 @@ index.html              la pagina principale
 grazie/index.html       pagina dopo l'iscrizione (ritualtouch.it/grazie)
 privacy/index.html      Privacy Policy
 cookie/index.html       Cookie Policy
+404.html                pagina per gli indirizzi sbagliati (testo modificabile)
 assets/js/config.js     ← LE IMPOSTAZIONI DA COMPILARE (video e modulo Kit)
 assets/js/main.js       comportamenti: video, modulo, pulsante fisso, dissolvenze
+assets/js/pagine.js     «Torna alla pagina» nelle pagine Privacy e Cookie
 assets/css/style.css    colori, caratteri e impaginazione
 assets/img/             simbolo, foto di Andrea, immagine per le anteprime social
 assets/fonts/           Cormorant Garamond e Inter (ospitati qui, con le licenze)
@@ -142,7 +144,10 @@ Senza parametro, la fonte registrata è `diretto`.
 - Video: stato provvisorio; con l'ID, copertina verde con logo e play. YouTube (youtube-nocookie.com, con avvio automatico) si carica solo al clic.
 - Modulo: disattivato senza Kit; collegato, invia nome, email, cellulare e fonte, con controlli e messaggi in italiano. Il campo fonte legge `?utm_source=`.
 - Pulsante fisso «Entra nella Prima Cerchia» su smartphone: compare dopo la sezione video e sparisce quando il modulo è visibile.
-- Pagine Grazie, Privacy e Cookie; link a Instagram.
+- Pagine Grazie, Privacy e Cookie; link a Instagram. Da Privacy e Cookie, «Torna alla pagina» riporta al modulo senza perdere quello che era stato scritto.
+- Pagina 404 con il marchio, al posto di quella standard di Vercel.
+- Modulo pensato per il telefono: il tasto «Avanti» della tastiera passa al campo successivo, la casella del consenso è grande e nello stile del sito.
+- Il sito resta chiaro anche sui browser che scuriscono le pagine da soli (per esempio Samsung Internet).
 - Navigazione da tastiera con focus visibile; contrasti WCAG AA su tutti i testi.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
 
@@ -158,6 +163,8 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Privacy:** indirizzo della sede; hosting (Vercel Inc., Stati Uniti) e garanzie per il trasferimento extra-UE di Vercel e Kit.
 
 ### Proposte (non applicate)
+- Mettere un ritratto di Andrea già nella prima schermata: chi arriva da un Reel lo riconosce subito. Oggi la sua foto compare solo nella quinta sezione.
+- Far partire i messaggi automatici quando il video è online: finché c'è il messaggio provvisorio, «Guarda il rituale» porta a un video che non c'è ancora.
 - Nella Cookie Policy, la frase «Nessun banner necessario finché resta così.» sembra una nota interna: valuterei di toglierla dalla pagina pubblica.
 - Per avere traccia del consenso anche in Kit, si può inviare un campo `consenso` insieme all'iscrizione (oggi la casella è obbligatoria ma non viene salvata).
 

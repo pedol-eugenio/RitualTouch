@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
   <title>Ritual Touch — Il rituale ovunque tu sia</title>
   <meta name="description" content="Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami. Guarda il primo rituale ed entra nella Prima Cerchia.">
   <link rel="canonical" href="https://ritualtouch.it/">
@@ -28,6 +29,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <link rel="preload" href="assets/fonts/cormorant-garamond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/cormorant-garamond-500-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-regular-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/config.js" defer></script>
@@ -43,7 +45,7 @@
         <img class="logo__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="487" height="589">
         <span class="logo__scritta">Ritual Touch</span>
       </div>
-      <h1 id="titolo-hero">Tra tutto quello che fai per gli altri, c’è anche una persona che merita le tue attenzioni: <em>tu.</em></h1>
+      <h1 id="titolo-hero">Tra tutto quello che fai <span class="insieme">per gli altri,</span> c’è anche una persona che merita le tue <span class="insieme">attenzioni: <em>tu.</em></span></h1>
       <p class="hero__sottotitolo">Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami.</p>
       <a class="pulsante pulsante--oro" href="#video">Guarda il rituale</a>
     </div>
@@ -91,17 +93,17 @@
       <form class="modulo" method="post" novalidate data-modulo>
         <div class="campo">
           <label for="nome">Nome</label>
-          <input id="nome" name="fields[first_name]" type="text" autocomplete="given-name" autocapitalize="words" maxlength="80" required>
+          <input id="nome" name="fields[first_name]" type="text" autocomplete="given-name" autocapitalize="words" enterkeyhint="next" maxlength="80" required>
           <p class="errore" id="errore-nome" hidden></p>
         </div>
         <div class="campo">
           <label for="email">Email</label>
-          <input id="email" name="email_address" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="120" required>
+          <input id="email" name="email_address" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" maxlength="120" required>
           <p class="errore" id="errore-email" hidden></p>
         </div>
         <div class="campo">
           <label for="cellulare">Cellulare <span class="facoltativo">(facoltativo)</span></label>
-          <input id="cellulare" name="fields[cellulare]" type="tel" autocomplete="tel" inputmode="tel" maxlength="25">
+          <input id="cellulare" name="fields[cellulare]" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" maxlength="25">
           <p class="errore" id="errore-cellulare" hidden></p>
         </div>
         <input type="hidden" name="fields[fonte]" value="diretto" data-fonte>

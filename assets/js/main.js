@@ -115,6 +115,17 @@
     var fonte = modulo.querySelector("[data-fonte]");
     if (fonte) fonte.value = leggiFonte();
 
+    // Sul telefono il tasto «Avanti/Invio» porta al campo successivo invece di inviare subito.
+    var successivo = { nome: "email", email: "cellulare", cellulare: "consenso" };
+    modulo.addEventListener("keydown", function (evento) {
+      if (evento.key !== "Enter" || evento.isComposing) return;
+      var prossimo = successivo[evento.target.id];
+      if (!prossimo) return;
+      evento.preventDefault();
+      var campo = document.getElementById(prossimo);
+      if (campo) campo.focus();
+    });
+
     var pulsante = modulo.querySelector("[data-invia]");
     var stato = modulo.querySelector("[data-stato]");
     var testoPulsante = pulsante ? pulsante.textContent : "";
