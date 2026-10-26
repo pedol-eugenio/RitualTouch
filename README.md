@@ -112,7 +112,7 @@ L'immagine di anteprima (quando il link viene condiviso su WhatsApp o Instagram)
 
 1. Crea l'account su kit.com.
 2. *Audience growth* → *Landing Pages & Forms* → crea un **Form**.
-3. Nel form aggiungi due campi e salvali come **campo personalizzato** con nome esattamente `cellulare` e `fonte` (minuscolo). Guida Kit: «How to add custom fields to Forms and Landing Pages». Il nome usa già il campo standard di Kit.
+3. Crea in Kit due **campi personalizzati** con nome esattamente `cellulare` e `fonte` (minuscolo). Il modo più semplice: *Subscribers* → apri un iscritto → accanto a *Custom Fields* il menu con i tre puntini → *Add new*. Non serve aggiungerli al form di Kit: il sito usa il suo modulo e Kit salva i valori appena i campi esistono. Il nome usa già il campo standard di Kit.
 4. *Settings* → *General*: scegli di reindirizzare a una pagina esterna e inserisci `https://ritualtouch.it/grazie`.
 5. *Settings* → *Confirmation email*: attivala (è la **doppia conferma**).
 6. *Embed* → **HTML**: nel codice trovi `action="https://app.kit.com/forms/…/subscriptions"`. Copia solo l'indirizzo tra le virgolette e incollalo in `config.js` come `KIT_FORM_ACTION`.
@@ -142,7 +142,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - Pagina completa con i testi definitivi del brief, verificata a 375 px e 1440 px (anche 320 px), senza scorrimento orizzontale.
 - Pulsante «Guarda il rituale» visibile senza scorrere sugli smartphone, anche dentro il browser di Instagram.
 - Video: stato provvisorio; con l'ID, copertina verde con logo e play. YouTube (youtube-nocookie.com, con avvio automatico) si carica solo al clic.
-- Modulo: disattivato senza Kit; collegato, invia nome, email, cellulare e fonte, con controlli e messaggi in italiano. Il campo fonte legge `?utm_source=`.
+- Modulo collegato a Kit (form 10099436): invia nome, email, cellulare e fonte, con controlli e messaggi in italiano. Il campo fonte legge `?utm_source=`. Se `KIT_FORM_ACTION` viene svuotato, il pulsante torna disattivato.
 - Pulsante fisso «Entra nella Prima Cerchia» su smartphone: compare dopo la sezione video e sparisce quando il modulo è visibile.
 - Pagine Grazie, Privacy e Cookie; link a Instagram. Da Privacy e Cookie, «Torna alla pagina» riporta al modulo senza perdere quello che era stato scritto.
 - Pagina 404 con il marchio, al posto di quella standard di Vercel.
@@ -158,7 +158,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Privacy e Cookie:** bozze da far verificare; i punti tra parentesi quadre sono evidenziati.
 
 ### Cosa devi configurare tu
-- **Kit:** account, form, campi `cellulare` e `fonte`, redirect a /grazie, doppia conferma, indirizzo in `config.js` (punto 6).
+- **Kit:** il modulo è collegato. Restano da fare: creare i campi `cellulare` e `fonte` (punto 6), confermare hello.ritualtouch@gmail.com come mittente predefinito e usarlo anche nell'email di conferma del form.
 - **Vercel e dominio:** import del repository e record DNS su Aruba (punti 4 e 5).
 - **Privacy:** indirizzo della sede; hosting (Vercel Inc., Stati Uniti) e garanzie per il trasferimento extra-UE di Vercel e Kit.
 
