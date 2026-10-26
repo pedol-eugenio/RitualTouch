@@ -24,6 +24,6 @@
 */
 window.RITUAL_TOUCH_CONFIG = {
   YOUTUBE_VIDEO_ID: "",
-  KIT_FORM_ACTION: "",
+  KIT_FORM_ACTION: "https://app.kit.com/forms/10099436/subscriptions",
   VIDEO_FORMATO: "16:9"
 };
