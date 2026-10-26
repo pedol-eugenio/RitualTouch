@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Ritual Touch — Il rituale ovunque tu sia</title>
+  <meta name="description" content="Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami. Guarda il primo rituale ed entra nella Prima Cerchia.">
+  <link rel="canonical" href="https://ritualtouch.it/">
+  <meta name="theme-color" content="#132A24">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:site_name" content="Ritual Touch">
+  <meta property="og:url" content="https://ritualtouch.it/">
+  <meta property="og:title" content="Ritual Touch — Il rituale ovunque tu sia">
+  <meta property="og:description" content="Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami. Guarda il primo rituale ed entra nella Prima Cerchia.">
+  <meta property="og:image" content="https://ritualtouch.it/assets/img/og-ritualtouch.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Il simbolo di Ritual Touch su fondo verde bosco, con la frase «Il rituale ovunque tu sia.»">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ritual Touch — Il rituale ovunque tu sia">
+  <meta name="twitter:description" content="Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami. Guarda il primo rituale ed entra nella Prima Cerchia.">
+  <meta name="twitter:image" content="https://ritualtouch.it/assets/img/og-ritualtouch.jpg">
+
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preload" href="assets/fonts/cormorant-garamond-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-regular-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body class="pagina-principale">
+<main>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero tema-scuro" aria-labelledby="titolo-hero">
+    <div class="hero__corpo">
+      <div class="logo">
+        <img class="logo__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="487" height="589">
+        <span class="logo__scritta">Ritual Touch</span>
+      </div>
+      <h1 id="titolo-hero">Tra tutto quello che fai per gli altri, c’è anche una persona che merita le tue attenzioni: <em>tu.</em></h1>
+      <p class="hero__sottotitolo">Rituali guidati per ritrovare un momento di cura, per te e per le persone che ami.</p>
+      <a class="pulsante pulsante--oro" href="#video">Guarda il rituale</a>
+    </div>
+    <p class="hero__payoff">Il rituale ovunque tu sia.</p>
+  </section>
+
+  <!-- ========== VIDEO ========== -->
+  <section id="video" class="sezione tema-chiaro video-sezione" aria-labelledby="titolo-video" tabindex="-1">
+    <div class="contenitore">
+      <h2 id="titolo-video" class="titolo-sezione" data-dissolvenza>Concediti qualche minuto.</h2>
+      <p class="testo-introduzione" data-dissolvenza>Non serve esperienza. Non serve tempo che non hai. Trova una posizione comoda, premi play e lasciati guidare.</p>
+
+      <div class="video" data-video>
+        <!-- Stato provvisorio: resta visibile finché in config.js manca YOUTUBE_VIDEO_ID -->
+        <div class="video__cornice video__provvisorio" data-video-provvisorio>
+          <img class="logo__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="487" height="589" loading="lazy">
+          <p>Il primo rituale arriva tra pochi giorni. Intanto puoi <a href="#prima-cerchia">entrare nella Prima Cerchia</a>.</p>
+        </div>
+        <!-- Copertina con play: compare quando c'è l'ID del video. YouTube si carica solo al clic. -->
+        <button type="button" class="video__cornice video__copertina" data-video-copertina hidden aria-label="Avvia il video del rituale">
+          <span class="logo">
+            <img class="logo__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="487" height="589" loading="lazy">
+            <span class="logo__scritta">Ritual Touch</span>
+          </span>
+          <span class="video__play" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <p class="video__nota" data-dissolvenza>Questo è uno dei momenti del rituale. Il percorso completo, con rituali per prenderti cura di te e rituali da condividere con chi ami, sta prendendo forma.</p>
+    </div>
+  </section>
+
+  <!-- ========== PRIMA CERCHIA ========== -->
+  <section id="prima-cerchia" class="sezione tema-scuro cerchia" aria-labelledby="titolo-cerchia" tabindex="-1">
+    <div class="contenitore cerchia__griglia">
+      <div class="cerchia__testo">
+        <h2 id="titolo-cerchia" class="titolo-sezione">Entra nella Prima Cerchia.</h2>
+        <p class="testo-introduzione">I rituali completi stanno nascendo adesso. Lascia i tuoi dati: sarai tra le prime persone a sapere quando saranno disponibili.</p>
+        <div class="beneficio">
+          <p class="beneficio__testo">Se acquisti nella settimana di apertura ricevi una videochiamata di qualche minuto con me, per conoscerci e capire come hai vissuto il tuo rituale.</p>
+          <p class="nota">Un momento di conversazione sull’esperienza del rituale, non una consulenza.</p>
+        </div>
+      </div>
+
+      <form class="modulo" method="post" novalidate data-modulo>
+        <div class="campo">
+          <label for="nome">Nome</label>
+          <input id="nome" name="fields[first_name]" type="text" autocomplete="given-name" autocapitalize="words" maxlength="80" required>
+          <p class="errore" id="errore-nome" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="email">Email</label>
+          <input id="email" name="email_address" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="120" required>
+          <p class="errore" id="errore-email" hidden></p>
+        </div>
+        <div class="campo">
+          <label for="cellulare">Cellulare <span class="facoltativo">(facoltativo)</span></label>
+          <input id="cellulare" name="fields[cellulare]" type="tel" autocomplete="tel" inputmode="tel" maxlength="25">
+          <p class="errore" id="errore-cellulare" hidden></p>
+        </div>
+        <input type="hidden" name="fields[fonte]" value="diretto" data-fonte>
+        <div class="consenso">
+          <input id="consenso" type="checkbox" required>
+          <label for="consenso">Voglio ricevere da Ritual Touch comunicazioni sul lancio dei rituali e sulle novità, via email e, se lascio il numero, via messaggio. Ho letto l’<a href="/privacy/">informativa privacy</a>.</label>
+          <p class="errore" id="errore-consenso" hidden></p>
+        </div>
+        <button class="pulsante pulsante--oro" type="submit" data-invia disabled>Voglio esserci</button>
+        <p class="modulo__stato" data-stato>Iscrizioni in apertura a breve.</p>
+        <p class="modulo__rassicurazione">Niente spam. Puoi cancellarti con un clic, in qualsiasi momento.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== PERCHÉ RITUAL TOUCH ========== -->
+  <section class="sezione tema-chiaro perche" aria-labelledby="titolo-perche">
+    <div class="contenitore">
+      <h2 id="titolo-perche" class="titolo-sezione" data-dissolvenza>Prendersi cura di sé non è un altro compito.</h2>
+      <p class="testo-introduzione" data-dissolvenza>Le giornate scorrono tra mille cose, e per noi resta poco spazio. La testa corre tra quello che è stato e quello che sarà. Il corpo, invece, è sempre qui. Ritual Touch ti propone rituali guidati da vivere a casa, anche in pochi minuti: gesti semplici per sentire il tuo corpo, o quello di una persona cara, e tornare presente.</p>
+
+      <div class="modi">
+        <div class="modo" data-dissolvenza>
+          <h3>Per te</h3>
+          <p>Un momento per ascoltare il tuo corpo e ritrovare calma, anche in una giornata piena.</p>
+        </div>
+        <div class="modo" data-dissolvenza>
+          <h3>Con chi ami</h3>
+          <p>Un gesto di cura da condividere con il partner o con una persona cara, per ritrovare vicinanza.</p>
+        </div>
+      </div>
+
+      <p class="frase-evidenza" data-dissolvenza>Non devi farlo perfettamente. Devi solo concederti il momento.</p>
+      <p class="nota">I rituali Ritual Touch sono esperienze di benessere e non sostituiscono trattamenti o indicazioni mediche.</p>
+    </div>
+  </section>
+
+  <!-- ========== CHI È ANDREA ========== -->
+  <section class="sezione tema-verde2 andrea" aria-labelledby="titolo-andrea">
+    <div class="contenitore andrea__griglia">
+      <div class="andrea__foto" data-dissolvenza>
+        <img src="assets/img/andrea-720.webp"
+             srcset="assets/img/andrea-480.webp 480w, assets/img/andrea-720.webp 720w"
+             sizes="(min-width: 62em) 384px, min(calc(100vw - 2.5rem), 336px)"
+             width="720" height="900" loading="lazy" decoding="async"
+             alt="Andrea Paracchini, fondatore di Ritual Touch">
+      </div>
+      <div class="andrea__testo">
+        <h2 id="titolo-andrea" class="titolo-sezione" data-dissolvenza>Sono Andrea.</h2>
+        <p data-dissolvenza>Sono massaggiatore professionista e massoterapista MCB. Nel mio lavoro vedo ogni giorno quanto un momento di cura cambi il modo in cui una persona si sente. Credo che il contatto sia uno dei modi più semplici per tornare presenti, con sé e con le persone che si amano. Tante persone mi scrivono che i miei video trasmettono serenità: Ritual Touch nasce per trasformarla in un momento da vivere davvero, dove sei tu.</p>
+        <a class="link-sobrio" href="https://www.instagram.com/andremassoterapista/">Seguimi su Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <a class="pulsante pulsante--oro cta-fissa" href="#prima-cerchia" data-cta-fissa aria-hidden="true" tabindex="-1">Entra nella Prima Cerchia</a>
+</main>
+
+<!-- ========== PIÈ DI PAGINA ========== -->
+<footer class="pie tema-scuro">
+  <div class="contenitore">
+    <div class="logo">
+      <img class="logo__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="487" height="589" loading="lazy">
+      <span class="logo__scritta">Ritual Touch</span>
+    </div>
+    <p class="pie__payoff">Il rituale ovunque tu sia.</p>
+    <ul class="pie__contatti">
+      <li>Instagram: <a href="https://www.instagram.com/ritualtouch.official/">@ritualtouch.official</a></li>
+      <li>Email: <a href="mailto:hello.ritualtouch@gmail.com">hello.ritualtouch@gmail.com</a></li>
+    </ul>
+    <p class="pie__legale">Ritual Touch di Paracchini Andrea Mauro Stefano · P.IVA IT12624470964</p>
+    <p class="pie__link"><a href="/privacy/">Privacy Policy</a> · <a href="/cookie/">Cookie Policy</a></p>
+  </div>
+</footer>
+</body>
+</html>
