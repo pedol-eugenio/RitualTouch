@@ -113,13 +113,15 @@ Se l'hosting cambia, i record A e CNAME vanno aggiornati con i valori del nuovo 
 
 ### Com'è configurato
 - **Form:** 10099436, già inserito in `config.js`. Il sito invia nome, email, cellulare, fonte e consenso.
-- **Campi personalizzati in Kit:** `cellulare` e `fonte` creati; **da creare: `consenso`** (*Subscribers* → apri un iscritto → tre puntini accanto a *Custom Fields* → *Add new*).
+- **Campi personalizzati in Kit:** `cellulare`, `fonte` e `consenso`, tutti creati.
 - **Dopo l'invio:** Kit porta a `https://ritualtouch.it/grazie`.
 - **Doppia conferma:** attiva. Dopo il clic su «Confermo l'iscrizione» Kit porta a `https://ritualtouch.it/`.
+- **Indirizzo in fondo alle email** (obbligatorio per legge): Via Alessandro Volta 17, 20064 Gorgonzola (MI), Italia. Si cambia in *Settings* → *Email* → *Mailing address*.
+- **GDPR Settings di Kit:** «Donʼt show to anyone». Va lasciato così: il consenso lo raccoglie già la casella del modulo sul sito, e accenderlo aggiungerebbe una seconda pagina di consenso.
 - **Prova del 27 ottobre 2026:** tutto funziona, ma l'email di conferma è finita in Spam (vedi sotto).
 
-### Da aggiornare in Kit: l'email di conferma
-Il form → *Settings* → *Confirmation Email*. Nuovo testo, allineato al nome della cerchia:
+### L'email di conferma (aggiornata il 27 ottobre 2026)
+Il form → *Settings* → *Confirmation email* → *Edit Email Contents*. Mittente: «Andrea · Ritual Touch» <hello.ritualtouch@gmail.com>.
 
 ```
 Oggetto: Conferma la tua iscrizione alla cerchia
@@ -196,7 +198,7 @@ Senza parametro, la fonte registrata è `diretto`.
 
 ### Cosa deve configurare Andrea
 - Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, i due file grafici del brief.
-- Kit: creare il campo `consenso`, aggiornare l'email di conferma (testo al punto 6), mittente su ritualtouch.it.
+- Kit: mittente su ritualtouch.it (punto 6).
 - Scelta dell'hosting (punto 4).
 
 ---
