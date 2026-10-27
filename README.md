@@ -184,6 +184,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
 - Contrasti WCAG AA su tutti i testi; contorno di selezione verde sui fondi chiari e oro su quelli scuri.
 - Dominio ritualtouch.it con HTTPS; Google Search Console attiva; dati strutturati per Google.
+- PageSpeed Insights da smartphone (27 ottobre 2026, dopo il rifacimento): 100 in Prestazioni, Accessibilità, Best practice e SEO (primo contenuto in 0,9 s, contenuto principale in 1,7 s).
 
 ### Cosa è provvisorio
 - **Simbolo del logo:** è ancora quello ricavato dall'avatar Instagram, in SVG. Quando arriva `RitualTouch_icona_FINALE.png` si ricavano le versioni piatte avorio e verde come chiede il brief (stessi nomi file); favicon e immagine social vanno rigenerati.
