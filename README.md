@@ -47,7 +47,7 @@ Da GitHub: apri il file → icona della matita (*Edit*) → cambia il testo tra 
 ```js
 window.RITUAL_TOUCH_CONFIG = {
   YOUTUBE_VIDEO_ID: "",   // es. "AbCdEf12345" oppure il link intero del video
-  KIT_FORM_ACTION: "",    // es. "https://app.kit.com/forms/1234567/subscriptions"
+  KIT_FORM_ACTION: "https://app.kit.com/forms/10099436/subscriptions",  // già inserito
   VIDEO_FORMATO: "16:9"   // "9:16" se il video è verticale
 };
 ```
@@ -108,17 +108,22 @@ L'immagine di anteprima (quando il link viene condiviso su WhatsApp o Instagram)
 
 ---
 
-## 6. Configurare Kit (piano gratuito)
+## 6. Kit (piano gratuito)
 
-1. Crea l'account su kit.com.
-2. *Audience growth* → *Landing Pages & Forms* → crea un **Form**.
-3. Crea in Kit due **campi personalizzati** con nome esattamente `cellulare` e `fonte` (minuscolo). Il modo più semplice: *Subscribers* → apri un iscritto → accanto a *Custom Fields* il menu con i tre puntini → *Add new*. Non serve aggiungerli al form di Kit: il sito usa il suo modulo e Kit salva i valori appena i campi esistono. Il nome usa già il campo standard di Kit.
-4. *Settings* → *General*: scegli di reindirizzare a una pagina esterna e inserisci `https://ritualtouch.it/grazie`.
-5. *Settings* → *Confirmation email*: attivala (è la **doppia conferma**).
-6. *Embed* → **HTML**: nel codice trovi `action="https://app.kit.com/forms/…/subscriptions"`. Copia solo l'indirizzo tra le virgolette e incollalo in `config.js` come `KIT_FORM_ACTION`.
-7. Prova con la tua email: dopo l'invio arrivi su /grazie e ricevi l'email da confermare.
+### Com'è configurato adesso
+- **Form:** 10099436, già inserito in `config.js`. Nel form di Kit basta il campo email: il sito usa il suo modulo e invia nome, email, cellulare e fonte.
+- **Dopo l'invio:** Kit porta a `https://ritualtouch.vercel.app/grazie`.
+- **Doppia conferma:** attiva. L'email di conferma è in italiano e parte da «Andrea · Ritual Touch» `hello.ritualtouch@gmail.com` (mittente predefinito, verificato).
+- **Dopo il clic su «Confermo l'iscrizione»:** Kit porta a `https://ritualtouch.vercel.app/` (*After confirming redirect to*).
+
+### Cosa resta
+1. **Campi `cellulare` e `fonte`:** dopo la prima iscrizione, *Subscribers* → apri l'iscritto → accanto a *Custom Fields* il menu con i tre puntini → *Add new*. I nomi devono essere esattamente `cellulare` e `fonte` (minuscolo). Finché i campi non esistono, Kit salva nome ed email e ignora gli altri due valori.
+2. **Quando colleghi ritualtouch.it** (punto 5), cambia in Kit i due indirizzi qui sopra: `https://ritualtouch.it/grazie` dopo l'invio e `https://ritualtouch.it/` dopo la conferma.
+3. **Mittente sul dominio (consigliato, dopo il dominio):** oggi le email partono da un indirizzo @gmail.com, e Kit segnala che può peggiorare la consegna. Con il dominio collegato: *Settings* → *Email* → *Verified sending domains* → aggiungi `ritualtouch.it` e inserisci su Aruba i record DNS che Kit indica. Poi usa come mittente un indirizzo @ritualtouch.it.
 
 Il piano gratuito di Kit arriva fino a 10.000 iscritti; oltre, Kit passa in automatico a un piano a pagamento.
+
+**Se serve rifare il collegamento:** in Kit, form → *Embed* → **HTML**: nel codice trovi `action="https://app.kit.com/forms/…/subscriptions"`. Copia solo l'indirizzo tra le virgolette e incollalo in `config.js` come `KIT_FORM_ACTION`.
 
 ---
 
@@ -143,6 +148,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - Pulsante «Guarda il rituale» visibile senza scorrere sugli smartphone, anche dentro il browser di Instagram.
 - Video: stato provvisorio; con l'ID, copertina verde con logo e play. YouTube (youtube-nocookie.com, con avvio automatico) si carica solo al clic.
 - Modulo collegato a Kit (form 10099436): invia nome, email, cellulare e fonte, con controlli e messaggi in italiano. Il campo fonte legge `?utm_source=`. Se `KIT_FORM_ACTION` viene svuotato, il pulsante torna disattivato.
+- Doppia conferma attiva: dopo l'invio si arriva su /grazie e parte l'email di conferma in italiano da «Andrea · Ritual Touch».
 - Pulsante fisso «Entra nella Prima Cerchia» su smartphone: compare dopo la sezione video e sparisce quando il modulo è visibile.
 - Pagine Grazie, Privacy e Cookie; link a Instagram. Da Privacy e Cookie, «Torna alla pagina» riporta al modulo senza perdere quello che era stato scritto.
 - Pagina 404 con il marchio, al posto di quella standard di Vercel.
@@ -150,19 +156,24 @@ Senza parametro, la fonte registrata è `diretto`.
 - Il sito resta chiaro anche sui browser che scuriscono le pagine da soli (per esempio Samsung Internet).
 - Navigazione da tastiera con focus visibile; contrasti WCAG AA su tutti i testi.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
+- PageSpeed Insights su smartphone (Lighthouse, 27 ottobre 2026): Prestazioni 98, Accessibilità 100, Best practice 100, SEO 100.
 
 ### Cosa è provvisorio
 - **Logo:** il simbolo è ricavato dall'avatar Instagram di @ritualtouch.official, in versione piatta (avorio su verde, verde su chiaro). La scritta «Ritual Touch» è composta in Cormorant Garamond. Quando arriva il vettoriale ufficiale, basta sostituire `assets/img/simbolo-avorio.svg` e `assets/img/simbolo-verde.svg` con file dagli stessi nomi; favicon e immagine social vanno rigenerati.
 - **Foto di Andrea:** ricavata da uno screenshot (720×900 px). Con il file originale la qualità migliora.
 - **Video:** messaggio provvisorio finché non c'è l'ID.
-- **Privacy e Cookie:** bozze da far verificare; i punti tra parentesi quadre sono evidenziati.
+- **Privacy e Cookie:** bozze da far verificare. Nella privacy ho compilato i fornitori: hosting Vercel Inc. (Stati Uniti); Kit e Vercel sono certificate nell'EU-U.S. Data Privacy Framework (fonti: pagina GDPR di Kit, help.kit.com, e pagina DPF di Vercel, vercel.com/kb). Il contratto di Kit include anche le clausole contrattuali standard. Resta evidenziato solo l'indirizzo della sede.
+- **Indirizzo:** il sito è su ritualtouch.vercel.app finché il dominio non è collegato. L'immagine di anteprima nei messaggi compare solo con ritualtouch.it.
 
 ### Cosa devi configurare tu
-- **Kit:** il modulo è collegato. Restano da fare: creare i campi `cellulare` e `fonte` (punto 6), confermare hello.ritualtouch@gmail.com come mittente predefinito e usarlo anche nell'email di conferma del form.
-- **Vercel e dominio:** import del repository e record DNS su Aruba (punti 4 e 5).
-- **Privacy:** indirizzo della sede; hosting (Vercel Inc., Stati Uniti) e garanzie per il trasferimento extra-UE di Vercel e Kit.
+- **Kit:** creare i campi `cellulare` e `fonte` dopo la prima iscrizione; con il dominio collegato, aggiornare i due indirizzi di ritorno e, consigliato, usare un mittente @ritualtouch.it (punto 6).
+- **Dominio:** record DNS su Aruba (punto 5).
+- **Privacy:** indirizzo della sede.
+- **Video:** caricarlo su YouTube come *non in elenco* e inserire l'ID in `config.js` (punto 2).
 
 ### Proposte (non applicate)
+- Dopo il clic su «Confermo l'iscrizione» si torna alla pagina principale, dove c'è di nuovo il modulo. Una pagina breve dedicata (per esempio «Sei nella Prima Cerchia.») darebbe un riscontro più chiaro.
+- Privacy, per chi verifica il testo: valutare se citare anche i dati tecnici di navigazione (per esempio l'indirizzo IP nei registri del server di Vercel).
 - Mettere un ritratto di Andrea già nella prima schermata: chi arriva da un Reel lo riconosce subito. Oggi la sua foto compare solo nella quinta sezione.
 - Far partire i messaggi automatici quando il video è online: finché c'è il messaggio provvisorio, «Guarda il rituale» porta a un video che non c'è ancora.
 - Nella Cookie Policy, la frase «Nessun banner necessario finché resta così.» sembra una nota interna: valuterei di toglierla dalla pagina pubblica.
