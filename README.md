@@ -85,6 +85,8 @@ Nota: il piano Hobby (gratuito) va bene per iniziare. Le condizioni di Vercel ri
 
 ## 5. Collegare il dominio ritualtouch.it (registrato su Aruba)
 
+**Fatto il 27 ottobre 2026.** Su Aruba: record A `@` → `216.198.79.1` e CNAME `www` → `c2fb807ccab9b5f1.vercel-dns-017.com`. Su Vercel `www.ritualtouch.it` porta a `ritualtouch.it` (redirect 308). I passi qui sotto restano come riferimento.
+
 Il dominio **resta su Aruba**: si cambiano solo due record DNS, non serve trasferirlo.
 
 **Su Vercel**
@@ -118,8 +120,8 @@ L'immagine di anteprima (quando il link viene condiviso su WhatsApp o Instagram)
 
 ### Cosa resta
 1. **Campi `cellulare` e `fonte`:** dopo la prima iscrizione, *Subscribers* → apri l'iscritto → accanto a *Custom Fields* il menu con i tre puntini → *Add new*. I nomi devono essere esattamente `cellulare` e `fonte` (minuscolo). Finché i campi non esistono, Kit salva nome ed email e ignora gli altri due valori.
-2. **Quando colleghi ritualtouch.it** (punto 5), cambia in Kit i due indirizzi qui sopra: `https://ritualtouch.it/grazie` dopo l'invio e `https://ritualtouch.it/` dopo la conferma.
-3. **Mittente sul dominio (consigliato, dopo il dominio):** oggi le email partono da un indirizzo @gmail.com, e Kit segnala che può peggiorare la consegna. Con il dominio collegato: *Settings* → *Email* → *Verified sending domains* → aggiungi `ritualtouch.it` e inserisci su Aruba i record DNS che Kit indica. Poi usa come mittente un indirizzo @ritualtouch.it.
+2. **Indirizzi di ritorno:** ora che ritualtouch.it è collegato, cambia in Kit i due indirizzi qui sopra: `https://ritualtouch.it/grazie` dopo l'invio e `https://ritualtouch.it/` dopo la conferma.
+3. **Mittente sul dominio (consigliato):** oggi le email partono da un indirizzo @gmail.com, e Kit segnala che può peggiorare la consegna. In Kit: *Settings* → *Email* → *Verified sending domains* → aggiungi `ritualtouch.it` e inserisci su Aruba i record DNS che Kit indica. Poi usa come mittente un indirizzo @ritualtouch.it: serve una casella o un inoltro su quell'indirizzo, perché Kit manda lì l'email di verifica.
 
 Il piano gratuito di Kit arriva fino a 10.000 iscritti; oltre, Kit passa in automatico a un piano a pagamento.
 
@@ -157,17 +159,16 @@ Senza parametro, la fonte registrata è `diretto`.
 - Navigazione da tastiera con focus visibile; contrasti WCAG AA su tutti i testi.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
 - PageSpeed Insights su smartphone (Lighthouse, 27 ottobre 2026): Prestazioni 98, Accessibilità 100, Best practice 100, SEO 100.
+- Dominio ritualtouch.it collegato a Vercel (configurazione valida); www.ritualtouch.it porta a ritualtouch.it. Anche ritualtouch.vercel.app continua a funzionare.
 
 ### Cosa è provvisorio
 - **Logo:** il simbolo è ricavato dall'avatar Instagram di @ritualtouch.official, in versione piatta (avorio su verde, verde su chiaro). La scritta «Ritual Touch» è composta in Cormorant Garamond. Quando arriva il vettoriale ufficiale, basta sostituire `assets/img/simbolo-avorio.svg` e `assets/img/simbolo-verde.svg` con file dagli stessi nomi; favicon e immagine social vanno rigenerati.
 - **Foto di Andrea:** ricavata da uno screenshot (720×900 px). Con il file originale la qualità migliora.
 - **Video:** messaggio provvisorio finché non c'è l'ID.
 - **Privacy e Cookie:** bozze da far verificare. Nella privacy ho compilato i fornitori: hosting Vercel Inc. (Stati Uniti); Kit e Vercel sono certificate nell'EU-U.S. Data Privacy Framework (fonti: pagina GDPR di Kit, help.kit.com, e pagina DPF di Vercel, vercel.com/kb). Il contratto di Kit include anche le clausole contrattuali standard. Resta evidenziato solo l'indirizzo della sede.
-- **Indirizzo:** il sito è su ritualtouch.vercel.app finché il dominio non è collegato. L'immagine di anteprima nei messaggi compare solo con ritualtouch.it.
 
 ### Cosa devi configurare tu
-- **Kit:** creare i campi `cellulare` e `fonte` dopo la prima iscrizione; con il dominio collegato, aggiornare i due indirizzi di ritorno e, consigliato, usare un mittente @ritualtouch.it (punto 6).
-- **Dominio:** record DNS su Aruba (punto 5).
+- **Kit:** portare i due indirizzi di ritorno su ritualtouch.it; creare i campi `cellulare` e `fonte` dopo la prima iscrizione; consigliato, usare un mittente @ritualtouch.it (punto 6).
 - **Privacy:** indirizzo della sede.
 - **Video:** caricarlo su YouTube come *non in elenco* e inserire l'ID in `config.js` (punto 2).
 
