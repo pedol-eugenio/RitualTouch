@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /grazie/
 
 Sitemap: https://ritualtouch.it/sitemap.xml

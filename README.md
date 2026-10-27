@@ -165,6 +165,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
 - PageSpeed Insights su smartphone (Lighthouse, 27 ottobre 2026): Prestazioni 98, Accessibilità 100, Best practice 100, SEO 100.
 - Dominio ritualtouch.it collegato a Vercel (configurazione valida); www.ritualtouch.it porta a ritualtouch.it. Anche ritualtouch.vercel.app continua a funzionare.
+- SEO di base: title e description del brief, canonical su ritualtouch.it, anteprime social, sitemap, robots.txt, pagina /grazie esclusa da Google (noindex). Dati strutturati schema.org (WebSite e Organization) per nome del sito, logo e profili Instagram nei risultati di Google.
 
 ### Cosa è provvisorio
 - **Logo:** il simbolo è ricavato dall'avatar Instagram di @ritualtouch.official, in versione piatta (avorio su verde, verde su chiaro). La scritta «Ritual Touch» è composta in Cormorant Garamond. Quando arriva il vettoriale ufficiale, basta sostituire `assets/img/simbolo-avorio.svg` e `assets/img/simbolo-verde.svg` con file dagli stessi nomi; favicon e immagine social vanno rigenerati.
@@ -175,6 +176,8 @@ Senza parametro, la fonte registrata è `diretto`.
 ### Cosa devi configurare tu
 - **Kit:** passare al mittente @ritualtouch.it con dominio verificato, perché oggi l'email di conferma può finire in Spam (punto 6).
 - **Privacy:** indirizzo della sede.
+- **Google Search Console:** aggiungere `ritualtouch.it` come proprietà *Dominio* (meglio con l'account Google di hello.ritualtouch@gmail.com), inserire su Aruba il record TXT che Google indica, poi inviare la sitemap `https://ritualtouch.it/sitemap.xml`.
+- **Vercel:** su *Settings* → *Domains*, far portare `ritualtouch.vercel.app` a `ritualtouch.it` (*Redirect to Another Domain*, 308), così esiste un solo indirizzo.
 - **Video:** caricarlo su YouTube come *non in elenco* e inserire l'ID in `config.js` (punto 2).
 
 ### Proposte (non applicate)
