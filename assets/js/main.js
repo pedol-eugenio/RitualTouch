@@ -70,6 +70,8 @@
     var id = estraiIdYoutube(config.YOUTUBE_VIDEO_ID);
     if (config.YOUTUBE_VIDEO_ID && !id) {
       console.warn("Ritual Touch: YOUTUBE_VIDEO_ID non sembra un video YouTube valido.");
+      document.documentElement.classList.remove("con-video");
+      document.documentElement.classList.add("senza-video");
     }
     var titolo = String(config.VIDEO_TITOLO || "").trim() || "Un momento per te";
 

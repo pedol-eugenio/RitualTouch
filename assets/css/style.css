@@ -338,12 +338,36 @@ label {
   color: var(--beige);
 }
 
+/* Finché manca il video: al posto di «Prima di premere play» un invito alla cerchia */
+.arrivo__attesa {
+  display: none;
+}
+.senza-video .arrivo__frase {
+  display: none;
+}
+.senza-video .arrivo__attesa {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+}
+.arrivo__attesa p {
+  font-family: var(--font-titoli);
+  font-style: italic;
+  font-weight: 500;
+  font-size: min(21px, 5.6vw);
+  line-height: 1.3;
+  color: var(--beige);
+}
+.arrivo__attesa .pulsante {
+  padding: 0 32px;
+}
+
 /* Riquadro video 4:5. Su telefono si riduce se serve, così titolo, video e frase
    stanno insieme nella prima schermata anche sui telefoni più bassi. */
 .video {
   --spazio-fuori-video: 238px;
   position: relative;
-  width: min(100%, max(220px, calc((100vh - var(--spazio-fuori-video)) * 0.8)));
+  width: min(100%, max(200px, calc((100vh - var(--spazio-fuori-video)) * 0.8)));
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 20px;
@@ -352,8 +376,11 @@ label {
 }
 @supports (height: 100svh) {
   .video {
-    width: min(100%, max(220px, calc((100svh - var(--spazio-fuori-video)) * 0.8)));
+    width: min(100%, max(200px, calc((100svh - var(--spazio-fuori-video)) * 0.8)));
   }
+}
+.senza-video .video {
+  --spazio-fuori-video: 306px; /* sotto il video ci sono anche frase e pulsante */
 }
 .video__copertina {
   position: absolute;
@@ -538,17 +565,9 @@ label {
 }
 .vantaggio p {
   margin-top: 2px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--testo-2-chiaro);
-}
-.cerchia__chiusura {
-  font-family: var(--font-titoli);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 21px;
-  line-height: 1.3;
-  color: var(--verde);
 }
 
 /* ---------- 3. Iscrizione ---------- */
@@ -614,12 +633,12 @@ label {
   box-shadow: inset 0 0 0 40px var(--avorio);
 }
 .campo__aiuto {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--testo-3-scuro);
 }
 .errore {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.4;
   color: var(--errore);
 }
@@ -658,7 +677,7 @@ label {
   border: 2px solid var(--errore);
 }
 .consenso label {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--avorio);
   cursor: pointer;
@@ -672,7 +691,7 @@ label {
   margin-top: 4px;
 }
 .consenso__nota {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--testo-3-scuro);
 }
@@ -682,7 +701,7 @@ label {
   margin-top: 6px;
 }
 .modulo__stato {
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
   color: var(--testo-2-scuro);
 }
@@ -702,7 +721,7 @@ label {
   object-position: 55% 25%;
 }
 .firma p {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.45;
   color: var(--testo-2-scuro);
 }
@@ -711,11 +730,39 @@ label {
 .rituali {
   padding-bottom: 64px;
 }
+/* Finché la foto non c'è: una fascia chiara con la frase al centro.
+   Con la foto (FOTO_SCATTO_01 in config.js): foto alta 360 px e frase in basso a sinistra. */
 .foto-grande {
   position: relative;
-  height: 360px;
+  display: grid;
+  place-items: center;
+  padding: 52px 24px;
   overflow: hidden;
+  background-color: var(--beige);
+}
+.foto-grande__frase {
+  font-family: var(--font-titoli);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--verde);
+}
+.con-foto-01 .foto-grande {
+  display: block;
+  height: 360px;
+  padding: 0;
   background-color: var(--segnaposto-foto);
+}
+.con-foto-01 .foto-grande__frase {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  z-index: 1;
+  text-align: left;
+  color: var(--avorio);
 }
 .foto-grande img {
   width: 100%;
@@ -730,19 +777,6 @@ label {
   bottom: 0;
   height: 55%;
   background: linear-gradient(rgba(19, 42, 36, 0), rgba(19, 42, 36, 0.55));
-}
-.foto-grande__frase {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 22px;
-  z-index: 1;
-  font-family: var(--font-titoli);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 30px;
-  line-height: 1.15;
-  color: var(--avorio);
 }
 .rituali__colonna {
   max-width: calc(var(--colonna) + 48px);
@@ -785,7 +819,7 @@ label {
 }
 .modo p {
   margin-top: 4px;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--testo-2-chiaro);
 }
@@ -837,9 +871,16 @@ label {
   padding: 16px 24px 0;
 }
 .andrea__testo > p {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
   color: var(--beige);
+}
+.andrea__instagram {
+  justify-self: start;
+  padding: 6px 0;
+  font-size: 16px;
+  color: var(--oro);
+  text-decoration-color: var(--oro);
 }
 .messaggi {
   display: grid;
@@ -865,7 +906,7 @@ label {
   gap: 20px;
 }
 .messaggi__coppia blockquote {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--beige);
 }
@@ -896,7 +937,7 @@ label {
   color: var(--verde);
 }
 .chiusura__nota {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--testo-3-chiaro);
 }
@@ -951,7 +992,7 @@ label {
 }
 .risposta {
   padding: 0 24px 20px 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.65;
   color: var(--testo-2-chiaro);
 }
@@ -973,13 +1014,22 @@ label {
   line-height: 1.15;
 }
 .contatto__testo {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--testo-2-chiaro);
 }
 .contatto__box .pulsante {
   width: 100%;
   margin-top: 8px;
+}
+.contatto__indirizzo {
+  font-size: 14px;
+  text-align: center;
+  color: var(--testo-3-chiaro);
+}
+/* Invito finale all'iscrizione: solo su computer (su telefono c'è il pulsante fisso) */
+.invito-finale {
+  display: none;
 }
 
 /* ---------- Footer ---------- */
@@ -1021,7 +1071,7 @@ label {
   }
 }
 .pie__legale {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--testo-3-scuro);
 }
@@ -1179,7 +1229,7 @@ label {
   line-height: 1.15;
 }
 .contatto-scuro p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--testo-2-scuro);
 }
@@ -1188,7 +1238,7 @@ label {
   margin-top: 8px;
 }
 .contatto-scuro .contatto-scuro__indirizzo {
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
   color: var(--testo-3-scuro);
 }
@@ -1206,7 +1256,7 @@ label {
 }
 .privacy__data {
   margin-top: -14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--testo-3-chiaro);
 }
 .in-breve {
@@ -1228,7 +1278,7 @@ label {
 }
 .privacy section p,
 .in-breve p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--testo-2-chiaro);
 }
@@ -1342,20 +1392,59 @@ label {
     width: auto;
     justify-self: start;
   }
+  .contatto__indirizzo {
+    text-align: left;
+  }
+  .invito-finale {
+    display: grid;
+    justify-items: center;
+    gap: 20px;
+    padding: 72px 24px 0;
+    text-align: center;
+  }
+  .invito-finale__testo {
+    font-family: var(--font-titoli);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.2;
+    color: var(--verde);
+  }
+  .invito-finale .pulsante {
+    padding: 0 40px;
+  }
+  .pie {
+    padding-bottom: 40px;
+  }
+
+  .senza-video .arrivo__attesa {
+    grid-area: frase;
+    justify-items: start;
+    margin-top: 28px;
+  }
+  .arrivo__attesa p {
+    font-size: 22px;
+  }
 
   .rituali {
     padding: 96px 0 96px;
   }
   .foto-grande {
     width: min(1200px, 100% - 96px);
-    height: 480px;
     margin: 0 auto;
+    padding: 72px 40px;
     border-radius: 20px;
   }
   .foto-grande__frase {
+    font-size: 40px;
+  }
+  .con-foto-01 .foto-grande {
+    height: 480px;
+    padding: 0;
+  }
+  .con-foto-01 .foto-grande__frase {
     left: 40px;
     bottom: 36px;
-    font-size: 40px;
   }
   .rituali__colonna {
     padding-top: 56px;

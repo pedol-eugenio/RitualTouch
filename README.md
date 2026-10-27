@@ -60,8 +60,8 @@ window.RITUAL_TOUCH_CONFIG = {
 };
 ```
 
-- **Video:** caricalo su YouTube come *non in elenco*. Senza ID la copertina resta, il pulsante play non compare e l'etichetta dice «IN ARRIVO». Con l'ID compare il play; YouTube si carica solo quando la persona lo preme, e alla fine del video la pagina scorre da sola alla sezione «Resta ancora un momento».
-- **Foto degli scatti 01–03:** prima vanno ottimizzate (formato WebP, larghezza 1600 px per la grande e 200 px per le piccole), poi messe in `assets/img` e indicate qui, per esempio `"assets/img/scatto-01.webp"`. Finché sono vuote, al posto della foto grande c'è un fondo scuro con la frase e le foto piccole non compaiono.
+- **Video:** caricalo su YouTube come *non in elenco*. Senza ID la copertina resta, il pulsante play non compare, l'etichetta dice «IN ARRIVO» e sotto il video compaiono «Il primo rituale arriva tra pochi giorni.» e il pulsante «Entra nella cerchia». Con l'ID compare il play e torna la frase «Prima di premere play: un respiro.»; YouTube si carica solo quando la persona lo preme, e alla fine del video la pagina scorre da sola alla sezione «Resta ancora un momento».
+- **Foto degli scatti 01–03:** prima vanno ottimizzate (formato WebP, larghezza 1600 px per la grande e 200 px per le piccole), poi messe in `assets/img` e indicate qui, per esempio `"assets/img/scatto-01.webp"`. Finché sono vuote, al posto della foto grande c'è una fascia chiara con la frase «Il corpo è sempre qui.» e le foto piccole non compaiono.
 - **Kit:** se `KIT_FORM_ACTION` viene svuotato, il pulsante «Voglio esserci» si disattiva e compare «Iscrizioni in apertura a breve.».
 
 ---
@@ -190,12 +190,12 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Simbolo del logo:** è ancora quello ricavato dall'avatar Instagram, in SVG. Quando arriva `RitualTouch_icona_FINALE.png` si ricavano le versioni piatte avorio e verde come chiede il brief (stessi nomi file); favicon e immagine social vanno rigenerati.
 - **Foto di Andrea:** è ancora quella ricavata dallo screenshot (720×900 px, con il pollice). Con l'originale `WVVI2912_1_.PNG` si fa il ritaglio del brief (x 240, y 20, 900×810) a 800 e 1600 px.
 - **Video:** «IN ARRIVO» finché non ci sono ID e durata.
-- **Foto degli scatti 01–03:** fondo scuro con la frase finché non arrivano.
+- **Foto degli scatti 01–03:** fascia chiara con la frase finché non arrivano.
 - **Frasi della community:** nascoste finché non c'è il permesso.
-- **Privacy:** manca l'indirizzo della sede (evidenziato); il testo va verificato da chi si occupa di privacy.
+- **Privacy:** completa (sede: via Alessandro Volta 17, 20064 Gorgonzola MI); il testo va verificato da chi si occupa di privacy.
 
 ### Cosa deve configurare Andrea
-- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, indirizzo della sede, i due file grafici del brief.
+- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, i due file grafici del brief.
 - Kit: creare il campo `consenso`, aggiornare l'email di conferma (testo al punto 6), mittente su ritualtouch.it.
 - Scelta dell'hosting (punto 4).
 
@@ -210,6 +210,15 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Pagina Cookie:** tolta come chiede il brief; chi ha il vecchio link viene portato a /privacy.
 - **Immagini:** solo WebP per il sito (JPG solo per l'anteprima social); logo in SVG finché non arriva il file del brief.
 - **Altro:** footer anche nelle pagine aggiuntive; angoli arrotondati della foto grande su computer; dati strutturati per Google.
+
+### Migliorie dopo la revisione UX/UI (27 ottobre 2026)
+- **Finché manca il video:** al posto di «Prima di premere play: un respiro.» compaiono «Il primo rituale arriva tra pochi giorni.» e il pulsante «Entra nella cerchia», così la prima schermata ha sempre un'azione.
+- **Testi più leggibili** per il pubblico 45–64 anni: risposte delle FAQ, vantaggi, privacy e testi brevi da 15 a 16 px, testi di Chi sono a 17 px, note da 13 a 14 px, dati legali nel footer a 13 px.
+- **Foto grande che manca:** fascia chiara con la frase al centro invece del blocco scuro alto 360 px (che, subito dopo il modulo verde, sembrava un'immagine non caricata).
+- **Testi:** tolta la riga «Entrare è gratuito.» dal riquadro della cerchia (ripeteva il testo sopra il modulo); «clic» al posto di «click».
+- **Contatto in home:** sotto il pulsante compare anche l'indirizzo hello.ritualtouch@gmail.com.
+- **Su computer:** dopo le FAQ, «Ti aspetto nella cerchia.» con il pulsante «Voglio esserci»; footer senza i 104 px vuoti in fondo (servono solo su telefono, per il pulsante fisso).
+- **Instagram:** link «Seguimi su Instagram» nella sezione Chi sono (il footer resta con i soli link Privacy e FAQ).
 
 ---
 

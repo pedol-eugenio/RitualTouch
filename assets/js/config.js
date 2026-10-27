@@ -42,3 +42,14 @@ window.RITUAL_TOUCH_CONFIG = {
   FOTO_SCATTO_03: "",
   CITAZIONI_APPROVATE: false
 };
+
+/* ---------- Da qui in giù non serve modificare niente ----------
+   Prepara la pagina prima che compaia (con o senza video, con o senza foto),
+   così niente si sposta mentre si carica. */
+(function () {
+  "use strict";
+  var c = window.RITUAL_TOUCH_CONFIG;
+  var classi = document.documentElement.classList;
+  classi.add(String(c.YOUTUBE_VIDEO_ID || "").trim() ? "con-video" : "senza-video");
+  if (String(c.FOTO_SCATTO_01 || "").trim()) classi.add("con-foto-01");
+})();

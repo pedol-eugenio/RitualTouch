@@ -69,7 +69,7 @@
         imagesrcset="assets/img/andrea-480.webp 480w, assets/img/andrea-720.webp 720w"
         imagesizes="(min-width: 900px) 480px, calc(100vw - 48px)" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/faq.js" defer></script>
   <script src="assets/js/main.js" defer></script>
 </head>
@@ -106,6 +106,11 @@
         </button>
       </div>
       <p class="arrivo__frase">Prima di premere play: un respiro.</p>
+      <!-- Compare solo finché in config.js manca il video -->
+      <div class="arrivo__attesa">
+        <p>Il primo rituale arriva tra pochi giorni.</p>
+        <a class="pulsante pulsante--oro" href="#iscrizione">Entra nella cerchia</a>
+      </div>
     </div>
   </section>
 
@@ -134,7 +139,6 @@
             <p>Se ti va: il prossimo percorso nascerà anche da te e dalla tua esperienza.</p>
           </li>
         </ul>
-        <p class="cerchia__chiusura">Entrare è gratuito.</p>
       </div>
     </div>
   </section>
@@ -177,7 +181,7 @@
 
       <div class="firma">
         <img src="assets/img/andrea-viso.webp" alt="" width="44" height="44" loading="lazy" decoding="async">
-        <p>Niente spam, e ti cancelli con un click.</p>
+        <p>Niente spam, e ti cancelli con un clic.</p>
       </div>
     </div>
   </section>
@@ -223,6 +227,7 @@
       <div class="andrea__testo">
         <p data-dissolvenza>Massaggiatore professionista e massoterapista MCB. Ogni giorno vedo quanto un momento di cura cambi il modo in cui una persona si sente.</p>
         <p data-dissolvenza>Credo che il contatto sia uno dei modi più semplici per tornare presenti, con sé e con le persone che si amano.<br>Ritual Touch nasce da qui.</p>
+        <a class="andrea__instagram" href="https://www.instagram.com/andremassoterapista/">Seguimi su Instagram</a>
         <!-- Restano nascoste finché in config.js CITAZIONI_APPROVATE è false -->
         <div class="messaggi" data-citazioni hidden>
           <p class="etichetta">Dai vostri messaggi</p>
@@ -256,7 +261,14 @@
         <h3 class="contatto__titolo">Hai un’altra domanda?</h3>
         <p class="contatto__testo">Scrivimi pure: ti rispondo io.</p>
         <a class="pulsante pulsante--contorno" href="mailto:hello.ritualtouch@gmail.com">Scrivi a Ritual Touch</a>
+        <p class="contatto__indirizzo">hello.ritualtouch@gmail.com</p>
       </div>
+    </div>
+
+    <!-- Solo su computer: su telefono c'è il pulsante fisso -->
+    <div class="invito-finale">
+      <p class="invito-finale__testo">Ti aspetto nella cerchia.</p>
+      <a class="pulsante pulsante--oro" href="#iscrizione">Voglio esserci</a>
     </div>
   </section>
 
