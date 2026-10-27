@@ -825,6 +825,9 @@ a {
 .legale h1 + p {
   margin-top: 1.5rem;
 }
+.legale .nota {
+  margin-top: 2.25rem;
+}
 .da-completare {
   padding: 0.05em 0.35em;
   border-radius: 3px;

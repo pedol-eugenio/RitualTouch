@@ -114,7 +114,8 @@ L'immagine di anteprima (quando il link viene condiviso su WhatsApp o Instagram)
 
 ### Com'è configurato adesso
 - **Form:** 10099436, già inserito in `config.js`. Nel form di Kit basta il campo email: il sito usa il suo modulo e invia nome, email, cellulare e fonte.
-- **Campi personalizzati:** `cellulare` e `fonte` creati in Kit (*Subscribers* → apri un iscritto → tre puntini accanto a *Custom Fields* → *Add new*).
+- **Campi personalizzati:** `cellulare` e `fonte` creati in Kit (*Subscribers* → apri un iscritto → tre puntini accanto a *Custom Fields* → *Add new*). Da creare allo stesso modo: `consenso`.
+- **Consenso:** la casella del modulo invia a Kit il campo `consenso` con il valore «Sì, informativa del 27/10/2026». Se cambiate l'informativa, aggiornate la data in `privacy/index.html` («Ultimo aggiornamento») e nel `value` della casella in `index.html`.
 - **Dopo l'invio:** Kit porta a `https://ritualtouch.it/grazie`.
 - **Doppia conferma:** attiva. L'email di conferma è in italiano e parte da «Andrea · Ritual Touch» `hello.ritualtouch@gmail.com` (mittente predefinito, verificato).
 - **Dopo il clic su «Confermo l'iscrizione»:** Kit porta a `https://ritualtouch.it/` (*After confirming redirect to*).
@@ -174,7 +175,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Privacy e Cookie:** bozze da far verificare. Nella privacy ho compilato i fornitori: hosting Vercel Inc. (Stati Uniti); Kit e Vercel sono certificate nell'EU-U.S. Data Privacy Framework (fonti: pagina GDPR di Kit, help.kit.com, e pagina DPF di Vercel, vercel.com/kb). Il contratto di Kit include anche le clausole contrattuali standard. Resta evidenziato solo l'indirizzo della sede.
 
 ### Cosa devi configurare tu
-- **Kit:** passare al mittente @ritualtouch.it con dominio verificato, perché oggi l'email di conferma può finire in Spam (punto 6).
+- **Kit:** creare il campo `consenso`; passare al mittente @ritualtouch.it con dominio verificato, perché oggi l'email di conferma può finire in Spam (punto 6).
 - **Privacy:** indirizzo della sede.
 - **Google Search Console:** aggiungere `ritualtouch.it` come proprietà *Dominio* (meglio con l'account Google di hello.ritualtouch@gmail.com), inserire su Aruba il record TXT che Google indica, poi inviare la sitemap `https://ritualtouch.it/sitemap.xml`.
 - **Vercel:** su *Settings* → *Domains*, far portare `ritualtouch.vercel.app` a `ritualtouch.it` (*Redirect to Another Domain*, 308), così esiste un solo indirizzo.
@@ -186,7 +187,6 @@ Senza parametro, la fonte registrata è `diretto`.
 - Mettere un ritratto di Andrea già nella prima schermata: chi arriva da un Reel lo riconosce subito. Oggi la sua foto compare solo nella quinta sezione.
 - Far partire i messaggi automatici quando il video è online: finché c'è il messaggio provvisorio, «Guarda il rituale» porta a un video che non c'è ancora.
 - Nella Cookie Policy, la frase «Nessun banner necessario finché resta così.» sembra una nota interna: valuterei di toglierla dalla pagina pubblica.
-- Per avere traccia del consenso anche in Kit, si può inviare un campo `consenso` insieme all'iscrizione (oggi la casella è obbligatoria ma non viene salvata).
 
 ---
 
