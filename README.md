@@ -114,14 +114,19 @@ L'immagine di anteprima (quando il link viene condiviso su WhatsApp o Instagram)
 
 ### Com'è configurato adesso
 - **Form:** 10099436, già inserito in `config.js`. Nel form di Kit basta il campo email: il sito usa il suo modulo e invia nome, email, cellulare e fonte.
-- **Dopo l'invio:** Kit porta a `https://ritualtouch.vercel.app/grazie`.
+- **Campi personalizzati:** `cellulare` e `fonte` creati in Kit (*Subscribers* → apri un iscritto → tre puntini accanto a *Custom Fields* → *Add new*).
+- **Dopo l'invio:** Kit porta a `https://ritualtouch.it/grazie`.
 - **Doppia conferma:** attiva. L'email di conferma è in italiano e parte da «Andrea · Ritual Touch» `hello.ritualtouch@gmail.com` (mittente predefinito, verificato).
-- **Dopo il clic su «Confermo l'iscrizione»:** Kit porta a `https://ritualtouch.vercel.app/` (*After confirming redirect to*).
+- **Dopo il clic su «Confermo l'iscrizione»:** Kit porta a `https://ritualtouch.it/` (*After confirming redirect to*).
+- **Prova del 27 ottobre 2026:** iscrizione, pagina di grazie, conferma e iscritto in Kit funzionano. L'email di conferma però è finita in Spam (vedi sotto).
 
 ### Cosa resta
-1. **Campi `cellulare` e `fonte`:** dopo la prima iscrizione, *Subscribers* → apri l'iscritto → accanto a *Custom Fields* il menu con i tre puntini → *Add new*. I nomi devono essere esattamente `cellulare` e `fonte` (minuscolo). Finché i campi non esistono, Kit salva nome ed email e ignora gli altri due valori.
-2. **Indirizzi di ritorno:** ora che ritualtouch.it è collegato, cambia in Kit i due indirizzi qui sopra: `https://ritualtouch.it/grazie` dopo l'invio e `https://ritualtouch.it/` dopo la conferma.
-3. **Mittente sul dominio (consigliato):** oggi le email partono da un indirizzo @gmail.com, e Kit segnala che può peggiorare la consegna. In Kit: *Settings* → *Email* → *Verified sending domains* → aggiungi `ritualtouch.it` e inserisci su Aruba i record DNS che Kit indica. Poi usa come mittente un indirizzo @ritualtouch.it: serve una casella o un inoltro su quell'indirizzo, perché Kit manda lì l'email di verifica.
+1. **Mittente sul dominio (importante):** l'email parte dai server di Kit ma con un indirizzo @gmail.com. Gmail non può verificarla e la tratta come sospetta. Per risolvere:
+   1. su Aruba crea la casella `hello@ritualtouch.it` (se vuoi, con inoltro a hello.ritualtouch@gmail.com);
+   2. in Kit: *Settings* → *Email* → *Verified Sending Domains* → aggiungi `ritualtouch.it`, inserisci su Aruba i record CNAME che Kit indica e premi *Validate*;
+   3. in Kit aggiungi il mittente `hello@ritualtouch.it`, confermalo dall'email che arriva nella nuova casella, rendilo predefinito e sceglilo nell'email di conferma del form;
+   4. consigliato: su Aruba aggiungi un record TXT `_dmarc` con valore `v=DMARC1; p=none;`.
+2. **Dopo il cambio di mittente:** rifai una prova con una nuova email e controlla che arrivi in Principale o in Promozioni.
 
 Il piano gratuito di Kit arriva fino a 10.000 iscritti; oltre, Kit passa in automatico a un piano a pagamento.
 
@@ -168,7 +173,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Privacy e Cookie:** bozze da far verificare. Nella privacy ho compilato i fornitori: hosting Vercel Inc. (Stati Uniti); Kit e Vercel sono certificate nell'EU-U.S. Data Privacy Framework (fonti: pagina GDPR di Kit, help.kit.com, e pagina DPF di Vercel, vercel.com/kb). Il contratto di Kit include anche le clausole contrattuali standard. Resta evidenziato solo l'indirizzo della sede.
 
 ### Cosa devi configurare tu
-- **Kit:** portare i due indirizzi di ritorno su ritualtouch.it; creare i campi `cellulare` e `fonte` dopo la prima iscrizione; consigliato, usare un mittente @ritualtouch.it (punto 6).
+- **Kit:** passare al mittente @ritualtouch.it con dominio verificato, perché oggi l'email di conferma può finire in Spam (punto 6).
 - **Privacy:** indirizzo della sede.
 - **Video:** caricarlo su YouTube come *non in elenco* e inserire l'ID in `config.js` (punto 2).
 
