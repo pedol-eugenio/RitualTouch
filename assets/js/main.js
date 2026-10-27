@@ -1,5 +1,5 @@
 /*
-  Ritual Touch — comportamenti della pagina.
+  Ritual Touch — comportamenti della pagina principale.
   Le impostazioni da modificare sono in config.js, non qui.
 */
 (function () {
@@ -8,6 +8,10 @@
   var config = window.RITUAL_TOUCH_CONFIG || {};
   var riduciMovimento =
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function scorriA(elemento) {
+    elemento.scrollIntoView({ behavior: riduciMovimento ? "auto" : "smooth", block: "start" });
+  }
 
   /* ---------- Video: copertina, poi YouTube solo al clic ---------- */
 
@@ -19,42 +23,88 @@
     return trovato ? trovato[1] : "";
   }
 
+  function testoEtichetta(conVideo) {
+    if (!conVideo) return "In arrivo";
+    var minuti = parseInt(config.VIDEO_DURATA_MINUTI, 10);
+    if (minuti > 0) return "Rituale gratuito · " + minuti + (minuti === 1 ? " minuto" : " minuti");
+    return "Rituale gratuito";
+  }
+
+  // Alla fine del video la pagina scorre alla sezione «Resta ancora un momento».
+  // L'interfaccia di YouTube si carica solo dopo il clic su play.
+  function collegaFineVideo(iframe) {
+    var sezione = document.getElementById("resta");
+    if (!sezione) return;
+    function collega() {
+      try {
+        new window.YT.Player(iframe, {
+          events: {
+            onStateChange: function (evento) {
+              if (evento.data === 0) scorriA(sezione); // 0 = video finito
+            }
+          }
+        });
+      } catch (e) {
+        /* se non riesce, il video funziona comunque */
+      }
+    }
+    if (window.YT && window.YT.Player) {
+      collega();
+      return;
+    }
+    var precedente = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof precedente === "function") precedente();
+      collega();
+    };
+    var script = document.createElement("script");
+    script.src = "https://www.youtube.com/iframe_api";
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
   function preparaVideo() {
     var box = document.querySelector("[data-video]");
     if (!box) return;
-
-    if (config.VIDEO_FORMATO === "9:16") box.classList.add("video--verticale");
 
     var id = estraiIdYoutube(config.YOUTUBE_VIDEO_ID);
     if (config.YOUTUBE_VIDEO_ID && !id) {
       console.warn("Ritual Touch: YOUTUBE_VIDEO_ID non sembra un video YouTube valido.");
     }
-    if (!id) return; // resta il riquadro provvisorio
+    var titolo = String(config.VIDEO_TITOLO || "").trim() || "Un momento per te";
 
-    var provvisorio = box.querySelector("[data-video-provvisorio]");
-    var copertina = box.querySelector("[data-video-copertina]");
-    if (!provvisorio || !copertina) return;
+    [].forEach.call(document.querySelectorAll("[data-video-etichetta]"), function (el) {
+      el.textContent = testoEtichetta(Boolean(id));
+    });
+    var campoTitolo = box.querySelector("[data-video-titolo]");
+    if (campoTitolo) campoTitolo.textContent = titolo;
 
-    provvisorio.hidden = true;
-    copertina.hidden = false;
+    if (!id) return; // niente video: copertina con «IN ARRIVO», nessun pulsante play
 
-    copertina.addEventListener("click", function () {
+    var play = box.querySelector("[data-video-play]");
+    if (!play) return;
+    play.hidden = false;
+
+    play.addEventListener("click", function () {
       var iframe = document.createElement("iframe");
-      iframe.className = "video__cornice video__iframe";
+      iframe.className = "video__iframe";
       iframe.src =
         "https://www.youtube-nocookie.com/embed/" +
         encodeURIComponent(id) +
-        "?autoplay=1&rel=0&playsinline=1";
-      iframe.title = "Il primo rituale di Ritual Touch";
+        "?autoplay=1&playsinline=1&rel=0&enablejsapi=1&origin=" +
+        encodeURIComponent(window.location.origin);
+      iframe.title = titolo;
       iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
       iframe.setAttribute("allowfullscreen", "");
       iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-      copertina.replaceWith(iframe);
+      play.hidden = true;
+      box.appendChild(iframe);
       iframe.focus();
+      collegaFineVideo(iframe);
     });
   }
 
-  /* ---------- Modulo Prima Cerchia (Kit) ---------- */
+  /* ---------- Modulo d'iscrizione (Kit) ---------- */
 
   function leggiFonte() {
     try {
@@ -67,24 +117,22 @@
   }
 
   var messaggi = {
-    nomeVuoto: "Scrivi il tuo nome.",
-    emailVuota: "Scrivi la tua email.",
-    emailErrata: "Controlla l’indirizzo email: sembra incompleto.",
-    cellulareErrato: "Controlla il numero di cellulare.",
-    consenso: "Per iscriverti, spunta la casella qui sopra."
+    nome: "Scrivi il tuo nome.",
+    email: "Controlla l’indirizzo email.",
+    cellulare: "Controlla il numero di cellulare.",
+    consenso: "Per continuare, spunta la casella."
   };
 
   function controllaCampo(campo) {
     var valore = campo.type === "checkbox" ? campo.checked : campo.value.trim();
     switch (campo.id) {
       case "nome":
-        return valore ? "" : messaggi.nomeVuoto;
+        return valore ? "" : messaggi.nome;
       case "email":
-        if (!valore) return messaggi.emailVuota;
-        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valore) ? "" : messaggi.emailErrata;
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(valore) ? "" : messaggi.email;
       case "cellulare":
         if (!valore) return "";
-        return /^\+?\d{6,15}$/.test(valore.replace(/[\s().\-\/]/g, "")) ? "" : messaggi.cellulareErrato;
+        return /^\+?\d{6,15}$/.test(valore.replace(/[\s().\-\/]/g, "")) ? "" : messaggi.cellulare;
       case "consenso":
         return valore ? "" : messaggi.consenso;
       default:
@@ -95,16 +143,23 @@
   function mostraErrore(campo, testo) {
     var errore = document.getElementById("errore-" + campo.id);
     if (!errore) return;
+    // Le descrizioni già presenti (per esempio il testo d'aiuto) restano collegate al campo.
+    var base = campo.getAttribute("data-descritto-da");
+    if (base === null) {
+      base = campo.getAttribute("aria-describedby") || "";
+      campo.setAttribute("data-descritto-da", base);
+    }
     if (testo) {
       errore.textContent = testo;
       errore.hidden = false;
       campo.setAttribute("aria-invalid", "true");
-      campo.setAttribute("aria-describedby", errore.id);
+      campo.setAttribute("aria-describedby", (errore.id + " " + base).trim());
     } else {
       errore.textContent = "";
       errore.hidden = true;
       campo.removeAttribute("aria-invalid");
-      campo.removeAttribute("aria-describedby");
+      if (base) campo.setAttribute("aria-describedby", base);
+      else campo.removeAttribute("aria-describedby");
     }
   }
 
@@ -115,7 +170,7 @@
     var fonte = modulo.querySelector("[data-fonte]");
     if (fonte) fonte.value = leggiFonte();
 
-    // Sul telefono il tasto «Avanti/Invio» porta al campo successivo invece di inviare subito.
+    // Sul telefono il tasto «Avanti» della tastiera porta al campo successivo.
     var successivo = { nome: "email", email: "cellulare", cellulare: "consenso" };
     modulo.addEventListener("keydown", function (evento) {
       if (evento.key !== "Enter" || evento.isComposing) return;
@@ -191,24 +246,26 @@
     });
   }
 
-  /* ---------- Pulsante fisso su smartphone ---------- */
+  /* ---------- Pulsante fisso «Voglio esserci» (telefono) ---------- */
 
   function preparaPulsanteFisso() {
     var pulsante = document.querySelector("[data-cta-fissa]");
-    var video = document.getElementById("video");
-    var modulo = document.querySelector("[data-modulo]");
-    if (!pulsante || !video || !modulo) return;
+    var arrivo = document.getElementById("inizio");
+    var iscrizione = document.getElementById("iscrizione");
+    var barra = document.querySelector(".barra");
+    if (!pulsante || !arrivo || !iscrizione) return;
 
     var inAttesa = false;
 
-    // Compare dopo la sezione video, sparisce quando il modulo è sullo schermo.
+    // Compare quando la sezione Arrivo esce dallo schermo, sparisce quando l'iscrizione è visibile.
     function aggiorna() {
       inAttesa = false;
       var altezza = window.innerHeight || document.documentElement.clientHeight;
-      var v = video.getBoundingClientRect();
-      var m = modulo.getBoundingClientRect();
-      var moduloVisibile = m.top < altezza && m.bottom > 0;
-      var mostra = v.bottom <= 0 && !moduloVisibile;
+      var sopra = barra ? barra.getBoundingClientRect().bottom : 0;
+      var a = arrivo.getBoundingClientRect();
+      var i = iscrizione.getBoundingClientRect();
+      var iscrizioneVisibile = i.top < altezza && i.bottom > sopra;
+      var mostra = a.bottom <= sopra && !iscrizioneVisibile;
       if (mostra === pulsante.classList.contains("visibile")) return;
       pulsante.classList.toggle("visibile", mostra);
       pulsante.setAttribute("aria-hidden", mostra ? "false" : "true");
@@ -221,9 +278,73 @@
       window.requestAnimationFrame(aggiorna);
     }
 
+    // Al tocco: scorre all'iscrizione e mette il cursore nel campo Nome.
+    pulsante.addEventListener("click", function (evento) {
+      evento.preventDefault();
+      var nome = document.getElementById("nome");
+      scorriA(iscrizione);
+      if (!nome) return;
+      var fatto = false;
+      function metti() {
+        if (fatto) return;
+        fatto = true;
+        try {
+          nome.focus({ preventScroll: true });
+        } catch (e) {
+          nome.focus();
+        }
+      }
+      if (riduciMovimento) {
+        metti();
+      } else if ("onscrollend" in window) {
+        window.addEventListener("scrollend", metti, { once: true });
+        window.setTimeout(metti, 1500);
+      } else {
+        window.setTimeout(metti, 800);
+      }
+    });
+
     window.addEventListener("scroll", richiedi, { passive: true });
     window.addEventListener("resize", richiedi);
     aggiorna();
+  }
+
+  /* ---------- Foto (quando ci sono) e frasi della community ---------- */
+
+  function creaFoto(percorso, classe, alt) {
+    var img = document.createElement("img");
+    img.src = percorso;
+    img.alt = alt;
+    img.loading = "lazy";
+    img.decoding = "async";
+    if (classe) img.className = classe;
+    return img;
+  }
+
+  function preparaFoto() {
+    var grande = document.querySelector("[data-foto-grande]");
+    var scatto01 = String(config.FOTO_SCATTO_01 || "").trim();
+    if (grande && scatto01) {
+      grande.insertBefore(creaFoto(scatto01, "", "Due mani appoggiate su una spalla, in una luce calda"), grande.firstChild);
+      grande.classList.add("foto-grande--con-foto");
+    }
+    [
+      ["FOTO_SCATTO_02", "[data-foto-per-te]"],
+      ["FOTO_SCATTO_03", "[data-foto-con-chi-ami]"]
+    ].forEach(function (coppia) {
+      var percorso = String(config[coppia[0]] || "").trim();
+      var posto = document.querySelector(coppia[1]);
+      if (!percorso || !posto) return;
+      var img = creaFoto(percorso, "modo__foto", "");
+      img.width = 88;
+      img.height = 88;
+      posto.replaceWith(img);
+    });
+
+    if (config.CITAZIONI_APPROVATE === true) {
+      var citazioni = document.querySelector("[data-citazioni]");
+      if (citazioni) citazioni.hidden = false;
+    }
   }
 
   /* ---------- Dissolvenze leggere all'ingresso ---------- */
@@ -259,6 +380,7 @@
   function avvia() {
     preparaVideo();
     preparaModulo();
+    preparaFoto();
     preparaPulsanteFisso();
     preparaDissolvenze();
   }

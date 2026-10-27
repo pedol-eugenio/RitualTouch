@@ -1,6 +1,6 @@
 /*
-  Pagine Privacy e Cookie: «Torna alla pagina» riporta indietro di un passo
-  quando si arriva dal sito, così il modulo ritrova quello che era stato scritto.
+  Pagine /privacy e /faq: «← Indietro» torna di un passo quando si arriva dal sito,
+  così il modulo ritrova quello che era stato scritto. Altrimenti apre la pagina principale.
 */
 (function () {
   "use strict";
