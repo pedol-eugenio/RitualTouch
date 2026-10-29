@@ -188,8 +188,12 @@ Senza parametro, la fonte registrata è `diretto`.
 - Dominio ritualtouch.it con HTTPS; Google Search Console attiva; dati strutturati per Google.
 - PageSpeed Insights da smartphone (27 ottobre 2026, dopo il rifacimento): 100 in Prestazioni, Accessibilità, Best practice e SEO (primo contenuto in 0,9 s, contenuto principale in 1,7 s).
 
+### Logo (29 ottobre 2026)
+- **Simbolo:** ricavato dal file `Icona_marchio/icona_HD.png` del pacchetto loghi di Andrea, con la regola del brief (solo i pixel dorati: rosso meno blu > 35 e rosso < 250; sfondo e ombra trasparenti; riflessi chiari dentro le linee riempiti). La sagoma è stata tracciata in vettoriale senza ridisegnarla (scarto massimo dal file originale: 2 px su 1.750) e colorata in `simbolo-avorio.svg` (#F2ECDF) e `simbolo-verde.svg` (#132A24).
+- **Rigenerati col simbolo nuovo:** `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` (simbolo verde su avorio) e `og-ritualtouch.jpg`.
+- **Scritta «RITUAL TOUCH»:** resta testo vero in Cormorant Garamond, come chiede il brief. Le versioni dorate in rilievo del pacchetto non si usano nel sito.
+
 ### Cosa è provvisorio
-- **Simbolo del logo:** è ancora quello ricavato dall'avatar Instagram, in SVG. Quando arriva `RitualTouch_icona_FINALE.png` si ricavano le versioni piatte avorio e verde come chiede il brief (stessi nomi file); favicon e immagine social vanno rigenerati.
 - **Foto di Andrea:** è ancora quella ricavata dallo screenshot (720×900 px, con il pollice). Con l'originale `WVVI2912_1_.PNG` si fa il ritaglio del brief (x 240, y 20, 900×810) a 800 e 1600 px.
 - **Video:** «IN ARRIVO» finché non ci sono ID e durata.
 - **Foto degli scatti 01–03:** fascia chiara con la frase finché non arrivano.
@@ -197,7 +201,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Privacy:** completa (sede: via Alessandro Volta 17, 20064 Gorgonzola MI); il testo va verificato da chi si occupa di privacy.
 
 ### Cosa deve configurare Andrea
-- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, i due file grafici del brief.
+- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, la foto originale `WVVI2912_1_.PNG`.
 - Kit: mittente su ritualtouch.it (punto 6).
 - Scelta dell'hosting (punto 4).
 
@@ -210,7 +214,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Contorno di selezione:** verde sui fondi chiari (l'oro avrebbe contrasto 1,95:1, ne serve 3:1).
 - **Telefoni bassi:** il video si riduce in proporzione, così titolo, video e frase restano nella prima schermata. Il titolo dell'iscrizione scende sotto i 30 px quanto basta per restare su una riga.
 - **Pagina Cookie:** tolta come chiede il brief; chi ha il vecchio link viene portato a /privacy.
-- **Immagini:** solo WebP per il sito (JPG solo per l'anteprima social); logo in SVG finché non arriva il file del brief.
+- **Immagini:** solo WebP per il sito (JPG solo per l'anteprima social). Il simbolo è in SVG invece che in PNG: è la stessa sagoma ricavata con la regola del brief, ma pesa 5 KB ed è nitido a ogni misura.
 - **Altro:** footer anche nelle pagine aggiuntive; angoli arrotondati della foto grande su computer; dati strutturati per Google.
 
 ### Migliorie dopo la revisione UX/UI (27 ottobre 2026)
