@@ -207,16 +207,22 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Simbolo:** ricavato dal file `Icona_marchio/icona_HD.png` del pacchetto loghi di Andrea, con la regola del brief (solo i pixel dorati: rosso meno blu > 35 e rosso < 250; sfondo e ombra trasparenti; riflessi chiari dentro le linee riempiti). La sagoma è stata tracciata in vettoriale senza ridisegnarla (scarto massimo dal file originale: 2 px su 1.750) e colorata in `simbolo-avorio.svg` (#F2ECDF) e `simbolo-verde.svg` (#132A24).
 - **Rigenerati col simbolo nuovo:** `favicon.svg`, `favicon.ico`, `apple-touch-icon.png` (simbolo verde su avorio) e `og-ritualtouch.jpg`.
 - **Scritta «RITUAL TOUCH»:** resta testo vero in Cormorant Garamond, come chiede il brief. Le versioni dorate in rilievo del pacchetto non si usano nel sito.
+- **Footer:** il simbolo avorio (40×48 px) sta sopra la scritta «RITUAL TOUCH», in tutte le pagine con footer.
+
+### Foto di Andrea (29 ottobre 2026)
+Dalle due foto originali (1254×1254 px, sfondo verde), sempre senza il pollice:
+- **Copertina del video:** prima foto (sfondo scuro), ritaglio 4:5 di 648×810 px centrato sul viso, con il logo della polo → `andrea-copertina-480.webp` e `andrea-copertina-648.webp`.
+- **Chi sono:** seconda foto (alone chiaro dietro la testa), ritaglio 900×770 px → `andrea-ritratto-480.webp` e `andrea-ritratto-900.webp`.
+- **Foto tonda della firma:** viso della prima foto → `andrea-viso.webp` (132 px).
 
 ### Cosa è provvisorio
-- **Foto di Andrea:** è ancora quella ricavata dallo screenshot (720×900 px, con il pollice). Con l'originale `WVVI2912_1_.PNG` si fa il ritaglio del brief (x 240, y 20, 900×810) a 800 e 1600 px.
 - **Video:** «IN ARRIVO» finché non ci sono ID e durata.
 - **Foto degli scatti 01–03:** fascia chiara con la frase finché non arrivano.
 - **Frasi della community:** nascoste finché non c'è il permesso.
 - **Privacy:** completa (sede: via Alessandro Volta 17, 20064 Gorgonzola MI); il testo va verificato da chi si occupa di privacy.
 
 ### Cosa deve configurare Andrea
-- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, la foto originale `WVVI2912_1_.PNG`.
+- Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi.
 - Scelta dell'hosting (punto 4).
 
 ---
@@ -228,7 +234,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Contorno di selezione:** verde sui fondi chiari (l'oro avrebbe contrasto 1,95:1, ne serve 3:1).
 - **Telefoni bassi:** il video si riduce in proporzione, così titolo, video e frase restano nella prima schermata. Il titolo dell'iscrizione scende sotto i 30 px quanto basta per restare su una riga.
 - **Pagina Cookie:** tolta come chiede il brief; chi ha il vecchio link viene portato a /privacy.
-- **Immagini:** solo WebP per il sito (JPG solo per l'anteprima social). Il simbolo è in SVG invece che in PNG: è la stessa sagoma ricavata con la regola del brief, ma pesa 5 KB ed è nitido a ogni misura.
+- **Immagini:** solo WebP per il sito (JPG solo per l'anteprima social). Il simbolo è in SVG invece che in PNG: è la stessa sagoma ricavata con la regola del brief, ma pesa 5 KB ed è nitido a ogni misura. Le foto di Andrea non hanno le versioni JPG e da 1600 px: l'originale è largo 1254 px, quindi una versione più grande sarebbe solo più pesante.
 - **Altro:** footer anche nelle pagine aggiuntive; angoli arrotondati della foto grande su computer; dati strutturati per Google.
 
 ### Migliorie dopo la revisione UX/UI (27 ottobre 2026)

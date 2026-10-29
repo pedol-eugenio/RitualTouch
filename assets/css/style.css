@@ -1043,6 +1043,10 @@ label {
   text-align: center;
   --focus: var(--oro);
 }
+.pie__simbolo {
+  width: 40px;
+  height: 48px;
+}
 .pie__marchio {
   font-size: 15px;
 }

@@ -65,8 +65,8 @@
   <link rel="preload" href="assets/fonts/cormorant-garamond-500-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/cormorant-garamond-600-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-regular-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/img/andrea-720.webp"
-        imagesrcset="assets/img/andrea-480.webp 480w, assets/img/andrea-720.webp 720w"
+  <link rel="preload" as="image" href="assets/img/andrea-copertina-648.webp"
+        imagesrcset="assets/img/andrea-copertina-480.webp 480w, assets/img/andrea-copertina-648.webp 648w"
         imagesizes="(min-width: 900px) 480px, calc(100vw - 48px)" fetchpriority="high">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/config.js"></script>
@@ -91,10 +91,10 @@
       <h1 id="titolo-arrivo" class="arrivo__titolo">Un momento di cura, <em>per te e per chi ami.</em></h1>
       <div class="video" data-video>
         <img class="video__copertina"
-             src="assets/img/andrea-720.webp"
-             srcset="assets/img/andrea-480.webp 480w, assets/img/andrea-720.webp 720w"
+             src="assets/img/andrea-copertina-648.webp"
+             srcset="assets/img/andrea-copertina-480.webp 480w, assets/img/andrea-copertina-648.webp 648w"
              sizes="(min-width: 900px) 480px, calc(100vw - 48px)"
-             width="720" height="900" alt="" fetchpriority="high" decoding="async">
+             width="648" height="810" alt="" fetchpriority="high" decoding="async">
         <div class="video__testi">
           <p class="etichetta video__etichetta" data-video-etichetta>In arrivo</p>
           <p class="video__titolo" data-video-titolo>Un momento per te</p>
@@ -217,10 +217,10 @@
   <section id="andrea" class="andrea scuro-2" aria-labelledby="titolo-andrea">
     <div class="andrea__griglia">
       <div class="andrea__foto">
-        <img src="assets/img/andrea-720.webp"
-             srcset="assets/img/andrea-480.webp 480w, assets/img/andrea-720.webp 720w"
-             sizes="(min-width: 900px) 440px, 100vw"
-             width="720" height="900" loading="lazy" decoding="async"
+        <img src="assets/img/andrea-ritratto-900.webp"
+             srcset="assets/img/andrea-ritratto-480.webp 480w, assets/img/andrea-ritratto-900.webp 900w"
+             sizes="(min-width: 900px) 608px, 100vw"
+             width="900" height="770" loading="lazy" decoding="async"
              alt="Andrea Paracchini, fondatore di Ritual Touch">
       </div>
       <h2 id="titolo-andrea" class="andrea__titolo">Sono Andrea.</h2>
@@ -276,6 +276,7 @@
 
 <!-- ========== FOOTER ========== -->
 <footer class="pie">
+  <img class="pie__simbolo" src="assets/img/simbolo-avorio.svg" alt="" width="40" height="48" loading="lazy" decoding="async">
   <p class="pie__marchio">Ritual Touch</p>
   <p class="pie__payoff">Il rituale ovunque tu sia.</p>
   <nav class="pie__link" aria-label="Pagine di servizio">
