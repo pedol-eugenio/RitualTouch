@@ -107,6 +107,18 @@ Collegato il 27 ottobre 2026. Su Aruba: record A `@` → `216.198.79.1` e CNAME 
 Su Aruba c'è anche il record TXT `google-site-verification`: **non cancellarlo**, serve a Google Search Console.
 Se l'hosting cambia, i record A e CNAME vanno aggiornati con i valori del nuovo servizio.
 
+**Record per le email (aggiunti il 29 ottobre 2026, non cancellarli):**
+
+| Tipo | Nome host | Valore | A cosa serve |
+|---|---|---|---|
+| CNAME | `ckespa` | `spf.dm-16cef81b.sg5.convertkit.com` | Kit: dominio di invio verificato |
+| CNAME | `cka._domainkey` | `dkim.dm-c5811c01.sg5.convertkit.com` | Kit: firma DKIM |
+| CNAME | `cka2._domainkey` | `dkim2.dm-882c6787.sg5.convertkit.com` | Kit: firma DKIM |
+| TXT | `_dmarc` | `v=DMARC1; p=none;` | DMARC (solo monitoraggio) |
+| TXT | `@` | `v=spf1 include:_spf.aruba.it ~all` | SPF per le email scritte da Aruba (webmail, telefono) |
+
+I record `mx` e `imap` li gestisce Aruba per la posta. La casella è `hello@ritualtouch.it` (webmail: webmail.aruba.it); le caselle si gestiscono dal pannello Aruba → *Servizi di posta* → *Caselle di posta* → *Gestisci caselle*.
+
 ---
 
 ## 6. Kit (piano gratuito)
@@ -118,10 +130,11 @@ Se l'hosting cambia, i record A e CNAME vanno aggiornati con i valori del nuovo 
 - **Doppia conferma:** attiva. Dopo il clic su «Confermo l'iscrizione» Kit porta a `https://ritualtouch.it/`.
 - **Indirizzo in fondo alle email** (obbligatorio per legge): Via Alessandro Volta 17, 20064 Gorgonzola (MI), Italia. Si cambia in *Settings* → *Email* → *Mailing address*.
 - **GDPR Settings di Kit:** «Donʼt show to anyone». Va lasciato così: il consenso lo raccoglie già la casella del modulo sul sito, e accenderlo aggiungerebbe una seconda pagina di consenso.
-- **Prova del 27 ottobre 2026:** tutto funziona, ma l'email di conferma è finita in Spam (vedi sotto).
+- **Mittente predefinito:** «Andrea · Ritual Touch» <hello@ritualtouch.it> (dal 29 ottobre 2026; prima era hello.ritualtouch@gmail.com, che con Kit finiva in Spam).
+- **Prova del 27 ottobre 2026:** tutto funziona, ma l'email di conferma era finita in Spam (vedi sotto).
 
 ### L'email di conferma (aggiornata il 27 ottobre 2026)
-Il form → *Settings* → *Confirmation email* → *Edit Email Contents*. Mittente: «Andrea · Ritual Touch» <hello.ritualtouch@gmail.com>.
+Il form → *Settings* → *Confirmation email* → *Edit Email Contents*. Mittente: «Andrea · Ritual Touch» <hello@ritualtouch.it>.
 
 ```
 Oggetto: Conferma la tua iscrizione alla cerchia
@@ -139,12 +152,14 @@ A presto,
 Andrea
 ```
 
-### Mittente sul dominio (importante)
-Oggi l'email parte dai server di Kit ma con un indirizzo @gmail.com: Gmail non può verificarla e la tratta come sospetta. Per risolvere:
-1. su Aruba crea la casella `hello@ritualtouch.it` (se vuoi, con inoltro a hello.ritualtouch@gmail.com);
-2. in Kit: *Settings* → *Email* → *Verified Sending Domains* → aggiungi `ritualtouch.it`, inserisci su Aruba i record CNAME che Kit indica e premi *Validate*;
-3. in Kit aggiungi il mittente `hello@ritualtouch.it`, confermalo dall'email che arriva nella nuova casella, rendilo predefinito e sceglilo nell'email di conferma del form;
-4. consigliato: su Aruba aggiungi un record TXT `_dmarc` con valore `v=DMARC1; p=none;`.
+### Mittente sul dominio (29 ottobre 2026)
+Prima l'email partiva dai server di Kit con un indirizzo @gmail.com: Gmail non poteva verificarla e la trattava come sospetta. Fatto:
+1. casella `hello@ritualtouch.it` creata su Aruba;
+2. in Kit: *Settings* → *Email* → *Verified Sending Domains* → `ritualtouch.it`, con i record DNS del punto 5;
+3. mittente `hello@ritualtouch.it` confermato in Kit, predefinito e scelto nell'email di conferma del form;
+4. record DMARC (`v=DMARC1; p=none;`) e SPF di Aruba aggiunti.
+
+Se Kit segna il dominio come non verificato, controlla che i record del punto 5 ci siano ancora su Aruba e premi *Validate*.
 
 ### Cancellazioni
 Kit tiene in lista anche chi si cancella (come «disiscritto»). L'informativa dice che chi si cancella non riceve più nulla e può chiedere di eliminare del tutto i suoi dati: in quel caso, in Kit apri l'iscritto ed eliminalo. Conviene anche fare pulizia degli iscritti cancellati ogni tanto.
@@ -202,7 +217,6 @@ Senza parametro, la fonte registrata è `diretto`.
 
 ### Cosa deve configurare Andrea
 - Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi, la foto originale `WVVI2912_1_.PNG`.
-- Kit: mittente su ritualtouch.it (punto 6).
 - Scelta dell'hosting (punto 4).
 
 ---
@@ -222,7 +236,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - **Testi più leggibili** per il pubblico 45–64 anni: risposte delle FAQ, vantaggi, privacy e testi brevi da 15 a 16 px, testi di Chi sono a 17 px, note da 13 a 14 px, dati legali nel footer a 13 px.
 - **Foto grande che manca:** fascia chiara con la frase al centro invece del blocco scuro alto 360 px (che, subito dopo il modulo verde, sembrava un'immagine non caricata).
 - **Testi:** tolta la riga «Entrare è gratuito.» dal riquadro della cerchia (ripeteva il testo sopra il modulo); «clic» al posto di «click».
-- **Contatto in home:** sotto il pulsante compare anche l'indirizzo hello.ritualtouch@gmail.com.
+- **Contatto in home:** sotto il pulsante compare anche l'indirizzo email (dal 29 ottobre 2026 hello@ritualtouch.it).
 - **Su computer:** dopo le FAQ, «Ti aspetto nella cerchia.» con il pulsante «Voglio esserci»; footer senza i 104 px vuoti in fondo (servono solo su telefono, per il pulsante fisso).
 - **Instagram:** link «Seguimi su Instagram» nella sezione Chi sono (il footer resta con i soli link Privacy e FAQ).
 
