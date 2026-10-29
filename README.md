@@ -155,7 +155,7 @@ Andrea
 ### Mittente sul dominio (29 ottobre 2026)
 Prima l'email partiva dai server di Kit con un indirizzo @gmail.com: Gmail non poteva verificarla e la trattava come sospetta. Fatto:
 1. casella `hello@ritualtouch.it` creata su Aruba;
-2. in Kit: *Settings* → *Email* → *Verified Sending Domains* → `ritualtouch.it`, con i record DNS del punto 5;
+2. in Kit: *Settings* → *Email* → *Verified Sending Domains* → `ritualtouch.it`, con i record DNS del punto 5 (dominio verificato: spunta verde);
 3. mittente `hello@ritualtouch.it` confermato in Kit, predefinito e scelto nell'email di conferma del form;
 4. record DMARC (`v=DMARC1; p=none;`) e SPF di Aruba aggiunti.
 
