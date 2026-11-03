@@ -11,6 +11,7 @@ Sito di pre-lancio di **Ritual Touch** (ritualtouch.it): chi arriva guarda un vi
 ```
 index.html              la pagina principale
 grazie/index.html       pagina dopo l'iscrizione (ritualtouch.it/grazie)
+benvenuto/index.html    pagina dopo la conferma dell’email, con il rituale in regalo (ritualtouch.it/benvenuto)
 faq/index.html          domande frequenti (ritualtouch.it/faq)
 privacy/index.html      informativa privacy (ritualtouch.it/privacy)
 404.html                pagina per gli indirizzi sbagliati
