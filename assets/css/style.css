@@ -307,14 +307,36 @@ label {
 }
 
 /* ---------- 1. Arrivo ---------- */
+/* Su telefono titolo, frase e video stanno al centro dello spazio sotto la barra */
 .arrivo {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--barra) - var(--sicura-alto));
   padding: 24px 24px 32px;
 }
+@supports (height: 100svh) {
+  .arrivo {
+    min-height: calc(100svh - var(--barra) - var(--sicura-alto));
+  }
+}
 .arrivo__griglia {
-  display: grid;
-  justify-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 18px;
   text-align: center;
+}
+.arrivo__griglia > .arrivo__titolo {
+  margin-top: auto;
+}
+.arrivo__media {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  margin-bottom: auto;
 }
 .arrivo__etichetta {
   display: none;
@@ -336,6 +358,7 @@ label {
   font-size: min(23px, 6.1vw);
   line-height: 1.3;
   color: var(--beige);
+  text-align: center;
 }
 
 /* Finché manca il video: al posto di «Prima di premere play» un invito alla cerchia */
@@ -350,6 +373,13 @@ label {
   justify-items: center;
   gap: 14px;
 }
+/* Senza video il riquadro d'attesa chiude il blocco centrato */
+.senza-video .arrivo__media {
+  margin-bottom: 0;
+}
+.senza-video .arrivo__griglia > .arrivo__attesa {
+  margin-bottom: auto;
+}
 .arrivo__attesa p {
   font-family: var(--font-titoli);
   font-style: italic;
@@ -362,25 +392,15 @@ label {
   padding: 0 32px;
 }
 
-/* Riquadro video 4:5. Su telefono si riduce se serve, così titolo, video e frase
-   stanno insieme nella prima schermata anche sui telefoni più bassi. */
+/* Riquadro video orizzontale 16:9, largo quanto il contenuto */
 .video {
-  --spazio-fuori-video: 238px;
   position: relative;
-  width: min(100%, max(200px, calc((100vh - var(--spazio-fuori-video)) * 0.8)));
-  aspect-ratio: 4 / 5;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 16px;
   background-color: var(--verde-player);
   isolation: isolate;
-}
-@supports (height: 100svh) {
-  .video {
-    width: min(100%, max(200px, calc((100svh - var(--spazio-fuori-video)) * 0.8)));
-  }
-}
-.senza-video .video {
-  --spazio-fuori-video: 306px; /* sotto il video ci sono anche frase e pulsante */
 }
 .video__copertina {
   position: absolute;
@@ -388,7 +408,7 @@ label {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 18%;
+  object-position: 50% 28%;
 }
 .video::after {
   content: "";
@@ -397,27 +417,34 @@ label {
   right: 0;
   bottom: 0;
   z-index: 1;
-  height: 170px;
+  height: 110px;
   background: linear-gradient(rgba(12, 29, 24, 0), rgba(12, 29, 24, 0.92));
   pointer-events: none;
 }
 .video__testi {
   position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 18px;
+  left: 16px;
+  right: 16px;
+  bottom: 12px;
   z-index: 2;
-  display: grid;
-  gap: 4px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
   text-align: left;
 }
 .video__etichetta {
+  flex-shrink: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
   color: var(--oro);
 }
 .video__titolo {
+  min-width: 0;
   font-family: var(--font-titoli);
   font-weight: 500;
-  font-size: 25px;
+  font-size: 21px;
   line-height: 1.15;
   color: var(--avorio);
 }
@@ -442,9 +469,9 @@ label {
 .video__anello {
   position: absolute;
   left: 50%;
-  top: 46%;
-  width: 84px;
-  height: 84px;
+  top: 42%;
+  width: 64px;
+  height: 64px;
   transform: translate(-50%, -50%);
 }
 .video__anello::before {
@@ -457,16 +484,16 @@ label {
 }
 .video__disco {
   position: absolute;
-  inset: 12px;
+  inset: 9px;
   display: grid;
   place-items: center;
   border-radius: 50%;
   background-color: var(--avorio);
 }
 .video__disco svg {
-  width: 20px;
-  height: 22px;
-  margin-left: 4px;
+  width: 16px;
+  height: 18px;
+  margin-left: 3px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .video__anello::before {
@@ -1430,16 +1457,21 @@ label {
   .arrivo {
     padding: 72px 48px 88px;
   }
+  .arrivo {
+    display: block;
+    min-height: 0;
+  }
   .arrivo__griglia {
+    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto auto auto 1fr;
     grid-template-areas:
-      ". video"
-      "etichetta video"
-      "titolo video"
-      "frase video"
-      ". video";
-    column-gap: 96px;
+      ". media"
+      "etichetta media"
+      "titolo media"
+      "frase media"
+      ". media";
+    column-gap: 80px;
     row-gap: 0;
     justify-items: start;
     align-items: center;
@@ -1454,29 +1486,24 @@ label {
     font-size: 13px;
     color: var(--oro);
   }
-  .arrivo__titolo {
+  .arrivo__griglia > .arrivo__titolo {
     grid-area: titolo;
+    margin-top: 0;
     font-size: 68px;
     line-height: 1.04;
   }
+  .arrivo__media {
+    grid-area: media;
+    justify-self: center;
+    width: min(560px, 100%);
+    margin-bottom: 0;
+  }
   .arrivo__frase {
-    grid-area: frase;
-    margin-top: 28px;
-    font-size: 22px;
+    font-size: 24px;
   }
   .video {
-    grid-area: video;
-    justify-self: center;
-    width: 480px;
     border-radius: 24px;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
-  }
-  .video__anello {
-    width: 100px;
-    height: 100px;
-  }
-  .video__disco {
-    inset: 14px;
   }
   .video__titolo {
     font-size: 30px;
