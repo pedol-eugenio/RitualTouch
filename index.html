@@ -89,23 +89,25 @@
     <div class="arrivo__griglia">
       <p class="etichetta arrivo__etichetta" data-video-etichetta>In arrivo</p>
       <h1 id="titolo-arrivo" class="arrivo__titolo">Un momento di cura, <em>per te e per chi ami.</em></h1>
-      <div class="video" data-video>
-        <img class="video__copertina"
-             src="assets/img/andrea-copertina-648.webp"
-             srcset="assets/img/andrea-copertina-480.webp 480w, assets/img/andrea-copertina-648.webp 648w"
-             sizes="(min-width: 900px) 480px, calc(100vw - 48px)"
-             width="648" height="810" alt="" fetchpriority="high" decoding="async">
-        <div class="video__testi">
-          <p class="etichetta video__etichetta" data-video-etichetta>In arrivo</p>
-          <p class="video__titolo" data-video-titolo>Un momento per te</p>
+      <div class="arrivo__media">
+        <p class="arrivo__frase">Prima di premere play: un respiro.</p>
+        <div class="video" data-video>
+          <img class="video__copertina"
+               src="assets/img/andrea-copertina-648.webp"
+               srcset="assets/img/andrea-copertina-480.webp 480w, assets/img/andrea-copertina-648.webp 648w"
+               sizes="(min-width: 900px) 560px, calc(100vw - 48px)"
+               width="648" height="810" alt="" fetchpriority="high" decoding="async">
+          <div class="video__testi">
+            <p class="video__titolo" data-video-titolo>Un momento per te</p>
+            <p class="etichetta video__etichetta" data-video-etichetta data-video-etichetta-breve>In arrivo</p>
+          </div>
+          <button type="button" class="video__play" data-video-play aria-label="Guarda il primo rituale" hidden>
+            <span class="video__anello" aria-hidden="true">
+              <span class="video__disco"><svg viewBox="0 0 20 22" focusable="false"><path d="M0 0L20 11L0 22Z" fill="#132A24"/></svg></span>
+            </span>
+          </button>
         </div>
-        <button type="button" class="video__play" data-video-play aria-label="Guarda il primo rituale" hidden>
-          <span class="video__anello" aria-hidden="true">
-            <span class="video__disco"><svg viewBox="0 0 20 22" focusable="false"><path d="M0 0L20 11L0 22Z" fill="#132A24"/></svg></span>
-          </span>
-        </button>
       </div>
-      <p class="arrivo__frase">Prima di premere play: un respiro.</p>
       <!-- Compare solo finché in config.js manca il video -->
       <div class="arrivo__attesa">
         <p>Il primo rituale arriva tra pochi giorni.</p>
