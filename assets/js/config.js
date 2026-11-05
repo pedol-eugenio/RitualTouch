@@ -12,7 +12,8 @@
 
   VIDEO_DURATA_MINUTI
     La durata del video in minuti, solo il numero. Esempio: "5".
-    Compare nell'etichetta «RITUALE GRATUITO · 5 MINUTI».
+    Compare nell'etichetta dentro il video «GRATUITO · 5 MIN»
+    (e, da computer, sopra il titolo: «RITUALE GRATUITO · 5 MINUTI»).
 
   VIDEO_TITOLO
     La scritta grande sulla copertina del video.

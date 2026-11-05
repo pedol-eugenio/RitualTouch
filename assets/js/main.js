@@ -23,9 +23,11 @@
     return trovato ? trovato[1] : "";
   }
 
-  function testoEtichetta(conVideo) {
+  // breve = etichetta dentro il video («GRATUITO · 5 MIN»); l'altra è quella sopra il titolo, da computer.
+  function testoEtichetta(conVideo, breve) {
     if (!conVideo) return "In arrivo";
     var minuti = parseInt(config.VIDEO_DURATA_MINUTI, 10);
+    if (breve) return minuti > 0 ? "Gratuito · " + minuti + " min" : "Gratuito";
     if (minuti > 0) return "Rituale gratuito · " + minuti + (minuti === 1 ? " minuto" : " minuti");
     return "Rituale gratuito";
   }
@@ -76,7 +78,7 @@
     var titolo = String(config.VIDEO_TITOLO || "").trim() || "Un momento per te";
 
     [].forEach.call(document.querySelectorAll("[data-video-etichetta]"), function (el) {
-      el.textContent = testoEtichetta(Boolean(id));
+      el.textContent = testoEtichetta(Boolean(id), el.hasAttribute("data-video-etichetta-breve"));
     });
     var campoTitolo = box.querySelector("[data-video-titolo]");
     if (campoTitolo) campoTitolo.textContent = titolo;
