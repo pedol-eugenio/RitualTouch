@@ -381,12 +381,55 @@
     });
   }
 
+  /* ---------- Numero che cresce (es. 140.000+) quando entra nello schermo ---------- */
+
+  function preparaContatori() {
+    var elementi = [].slice.call(document.querySelectorAll("[data-contatore]"));
+    if (!elementi.length || riduciMovimento || !("IntersectionObserver" in window)) return;
+    var DURATA = 2200; // millisecondi: né troppo veloce né troppo lento
+
+    // Il «+» compare solo quando il numero è arrivato in fondo
+    function scrivi(el, valore, finito) {
+      el.textContent = valore.toLocaleString("it-IT") + (finito ? el.getAttribute("data-contatore-dopo") || "" : "");
+    }
+
+    function anima(el) {
+      var fine = parseInt(el.getAttribute("data-contatore"), 10) || 0;
+      var inizio = null;
+      function passo(ora) {
+        if (inizio === null) inizio = ora;
+        var t = Math.min((ora - inizio) / DURATA, 1);
+        var morbido = 1 - Math.pow(1 - t, 3); // rallenta verso la fine
+        scrivi(el, Math.round(fine * morbido), t === 1);
+        if (t < 1) window.requestAnimationFrame(passo);
+      }
+      window.requestAnimationFrame(passo);
+    }
+
+    var osservatore = new IntersectionObserver(
+      function (voci) {
+        voci.forEach(function (voce) {
+          if (voce.isIntersecting) {
+            osservatore.unobserve(voce.target);
+            anima(voce.target);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+    elementi.forEach(function (el) {
+      scrivi(el, 0, false);
+      osservatore.observe(el);
+    });
+  }
+
   function avvia() {
     preparaVideo();
     preparaModulo();
     preparaFoto();
     preparaPulsanteFisso();
     preparaDissolvenze();
+    preparaContatori();
   }
 
   if (document.readyState === "loading") {
