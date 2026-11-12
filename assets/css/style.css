@@ -312,39 +312,99 @@ label {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - var(--barra) - var(--sicura-alto));
-  padding: 24px 24px 32px;
+  padding: 24px 20px 32px;
 }
 @supports (height: 100svh) {
   .arrivo {
     min-height: calc(100svh - var(--barra) - var(--sicura-alto));
   }
 }
+/* Telefono: titolo, frase, video e invito a proseguire formano un solo blocco
+   al centro dello schermo, con spazi regolari. */
 .arrivo__griglia {
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
+  gap: 30px;
   text-align: center;
-}
-.arrivo__griglia > .arrivo__titolo {
-  margin-top: auto;
 }
 .arrivo__media {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   width: 100%;
-  margin-bottom: auto;
+}
+/* Invito a proseguire, sotto il video: frase in corsivo e cerchio oro con freccia */
+.arrivo__prosegui {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 4px 8px;
+  color: var(--beige);
+  text-align: center;
+  text-decoration: none;
+}
+.arrivo__prosegui-testo {
+  font-family: var(--font-titoli);
+  font-style: italic;
+  font-weight: 500;
+  font-size: min(21px, 5.6vw);
+  line-height: 1.3;
+}
+.arrivo__cerchio {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(201, 166, 107, 0.6);
+  border-radius: 50%;
+}
+@media (hover: hover) {
+  .arrivo__prosegui:hover .arrivo__cerchio {
+    background-color: rgba(201, 166, 107, 0.12);
+  }
+}
+.arrivo__freccia {
+  width: 9px;
+  height: 9px;
+  margin-top: -4px;
+  border-right: 1.5px solid var(--oro);
+  border-bottom: 1.5px solid var(--oro);
+  transform: rotate(45deg);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .arrivo__freccia {
+    animation: freccia-giu 2.4s ease-in-out infinite;
+  }
+}
+@keyframes freccia-giu {
+  0%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(3px) rotate(45deg);
+    opacity: 1;
+  }
+}
+.senza-video .arrivo__prosegui {
+  display: none;
 }
 .arrivo__etichetta {
   display: none;
 }
 .arrivo__titolo {
-  font-size: min(38px, 10vw);
-  line-height: 1.1;
+  max-width: 13em;
+  font-size: min(40px, 10.4vw);
+  line-height: 1.12;
   color: var(--avorio);
+  text-wrap: balance;
 }
 .arrivo__titolo em {
   display: block;
@@ -371,14 +431,7 @@ label {
 .senza-video .arrivo__attesa {
   display: grid;
   justify-items: center;
-  gap: 14px;
-}
-/* Senza video il riquadro d'attesa chiude il blocco centrato */
-.senza-video .arrivo__media {
-  margin-bottom: 0;
-}
-.senza-video .arrivo__griglia > .arrivo__attesa {
-  margin-bottom: auto;
+  gap: 18px;
 }
 .arrivo__attesa p {
   font-family: var(--font-titoli);
@@ -830,17 +883,21 @@ label {
   line-height: 1.6;
   color: var(--testo-2-chiaro);
 }
+/* Stesso stile del riquadro «Le Meravigliose Creature» */
 .modi {
-  margin-top: 24px;
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+  padding: 26px 22px;
+  border-radius: 20px;
+  background-color: var(--beige);
 }
 .modo {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px 0;
-}
-.modo + .modo {
-  border-top: 1px solid rgba(19, 42, 36, 0.12);
+  padding-left: 14px;
+  border-left: 2px solid var(--oro);
 }
 .modo__foto {
   flex: none;
@@ -851,11 +908,11 @@ label {
 }
 .modo h3 {
   font-weight: 600;
-  font-size: 25px;
-  line-height: 1.15;
+  font-size: 22px;
+  line-height: 1.2;
 }
 .modo p {
-  margin-top: 4px;
+  margin-top: 2px;
   font-size: 16px;
   line-height: 1.5;
   color: var(--testo-2-chiaro);
@@ -1284,6 +1341,19 @@ label {
   color: var(--oro);
 }
 
+/* Testo letto solo dai lettori di schermo */
+.solo-lettori {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Pagina /grazie: testi ---------- */
 .grazie__testo--forte {
   font-family: var(--font-titoli);
@@ -1510,7 +1580,9 @@ label {
   .arrivo {
     display: block;
     min-height: 0;
+    padding: 96px 48px 112px;
   }
+
   .arrivo__griglia {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1601,7 +1673,8 @@ label {
   .senza-video .arrivo__attesa {
     grid-area: frase;
     justify-items: start;
-    margin-top: 28px;
+    gap: 22px;
+    margin-top: 40px;
   }
   .arrivo__attesa p {
     font-size: 22px;
@@ -1631,12 +1704,8 @@ label {
     padding-top: 56px;
   }
   .modi {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 32px;
-  }
-  .modo + .modo {
-    border-top: 0;
   }
 
   .andrea {
