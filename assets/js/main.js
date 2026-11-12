@@ -83,11 +83,25 @@
     var campoTitolo = box.querySelector("[data-video-titolo]");
     if (campoTitolo) campoTitolo.textContent = titolo;
 
-    if (!id) return; // niente video: copertina con «IN ARRIVO», nessun pulsante play
-
     var play = box.querySelector("[data-video-play]");
     if (!play) return;
     play.hidden = false;
+
+    // Niente video ancora: la copertina è uguale, ma il play mostra «Il primo rituale arriva tra pochi giorni».
+    if (!id) {
+      var avviso = box.querySelector("[data-video-avviso]");
+      var timer = null;
+      play.setAttribute("aria-label", "Il primo rituale arriva tra pochi giorni");
+      play.addEventListener("click", function () {
+        box.classList.add("video--avviso");
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () {
+          box.classList.remove("video--avviso");
+        }, 3500);
+      });
+      if (avviso) avviso.setAttribute("aria-live", "polite");
+      return;
+    }
 
     play.addEventListener("click", function () {
       var iframe = document.createElement("iframe");
