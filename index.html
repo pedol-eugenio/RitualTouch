@@ -88,7 +88,7 @@
   <section id="inizio" class="arrivo scuro" aria-labelledby="titolo-arrivo">
     <div class="arrivo__griglia">
       <p class="etichetta arrivo__etichetta" data-video-etichetta>In arrivo</p>
-      <h1 id="titolo-arrivo" class="arrivo__titolo">Un momento di cura, <em>per te e per chi ami.</em></h1>
+      <h1 id="titolo-arrivo" class="arrivo__titolo">Prenditi cura di te <em>e di chi vuoi bene.</em></h1>
       <div class="arrivo__media">
         <p class="arrivo__frase">Prima di premere play: un respiro.</p>
         <div class="video" data-video>
@@ -107,6 +107,8 @@
             </span>
           </button>
         </div>
+        <!-- Compare solo quando c'è il video: invita a proseguire dopo averlo guardato -->
+        <a class="arrivo__prosegui" href="#resta"><span class="arrivo__prosegui-testo">Se ti risuona dentro, continua:<br>il resto è per te.</span><span class="arrivo__cerchio" aria-hidden="true"><span class="arrivo__freccia"></span></span></a>
       </div>
       <!-- Compare solo finché in config.js manca il video -->
       <div class="arrivo__attesa">
@@ -166,7 +168,7 @@
         <div class="campo">
           <label for="cellulare">Cellulare <span class="facoltativo">· facoltativo</span></label>
           <input id="cellulare" name="fields[cellulare]" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" maxlength="25" aria-describedby="aiuto-cellulare">
-          <p class="campo__aiuto" id="aiuto-cellulare">Se lo lasci e scegli il percorso, ti chiamo per conoscerti.</p>
+          <p class="campo__aiuto" id="aiuto-cellulare">Provati i rituali, ti chiamo per sapere com’è andata.</p>
           <p class="errore" id="errore-cellulare" hidden></p>
         </div>
         <input type="hidden" name="fields[fonte]" value="diretto" data-fonte>
@@ -175,7 +177,7 @@
                Se cambia l'informativa privacy, aggiorna anche la data qui sotto. -->
           <input id="consenso" name="fields[consenso]" type="checkbox" value="Sì, informativa del 29/10/2026" required aria-describedby="nota-consenso">
           <label for="consenso">Ho letto e accetto l’<a href="/privacy/">informativa privacy</a>.</label>
-          <p class="consenso__nota" id="nota-consenso">I tuoi dati servono solo a Ritual Touch, e li custodisco con cura.</p>
+          <p class="consenso__nota" id="nota-consenso">I tuoi dati sono custoditi con cura.</p>
           <p class="errore" id="errore-consenso" hidden></p>
         </div>
         <button class="pulsante pulsante--oro" type="submit" data-invia disabled>Voglio esserci</button>
@@ -238,7 +240,7 @@
               <p class="prima-di__testo">anni di trattamenti a domicilio</p>
             </div>
             <div class="prima-di__riquadro">
-              <p class="prima-di__numero">140.000+</p>
+              <p class="prima-di__numero"><span aria-hidden="true" data-contatore="140000" data-contatore-dopo="+">140.000+</span><span class="solo-lettori">140.000+</span></p>
               <p class="prima-di__testo">persone mi seguono sui social</p>
             </div>
           </div>
