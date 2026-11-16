@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
-  <title>Benvenuta, benvenuto — Ritual Touch</title>
-  <meta name="description" content="Benvenuta, benvenuto nella cerchia delle Meravigliose Creature di Ritual Touch.">
+  <title>Ti do il benvenuto — Ritual Touch</title>
+  <meta name="description" content="Ti do il benvenuto nella cerchia delle Meravigliose Creature di Ritual Touch.">
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#132A24">
   <link rel="icon" href="../favicon.ico" sizes="32x32">
@@ -24,38 +24,104 @@
   </a>
 </header>
 
-<main class="grazie benvenuto scuro">
-  <img class="grazie__simbolo grazie__simbolo--respiro" src="../assets/img/simbolo-avorio.svg" alt="" width="66" height="80">
-  <h1>Benvenuta, benvenuto,<br><em>meravigliosa creatura.</em></h1>
-  <p class="grazie__testo">Adesso fai parte della cerchia. Sarai tra le prime persone a sapere quando apre il percorso completo.</p>
-  <p class="grazie__testo">Intanto, ecco il regalo che ti avevo promesso.</p>
+<main class="bv">
 
-  <article class="regalo" aria-labelledby="titolo-regalo">
-    <p class="etichetta regalo__etichetta">3 minuti · per quando torni a casa</p>
-    <h2 id="titolo-regalo" class="regalo__titolo">Il rituale della soglia</h2>
-    <p>In otto anni ho suonato a più di duemila porte. E ho imparato una cosa: il momento più importante di un trattamento arriva prima di toccare. È quando la persona smette di correre e arriva.</p>
-    <p>Questo rituale serve a questo: arrivare a casa davvero, non solo con il corpo.</p>
-    <ol class="regalo__passi">
-      <li><span class="regalo__numero" aria-hidden="true">1</span><div><h3>Fermati sulla soglia.</h3><p>Appena entri, prima del telefono, delle borse, della cena. Resta un momento vicino alla porta e lascia scendere le spalle.</p></div></li>
-      <li><span class="regalo__numero" aria-hidden="true">2</span><div><h3>Tieni la testa tra le mani.</h3><p>Strofina i palmi finché si scaldano. Appoggia una mano sulla fronte e l’altra dietro la nuca. Tre respiri lenti. È un modo semplice per dire ai pensieri: potete fermarvi.</p></div></li>
-      <li><span class="regalo__numero" aria-hidden="true">3</span><div><h3>Togli la giornata dalle spalle.</h3><p>Fai scivolare piano la mano dalla nuca verso la spalla opposta, come per spazzare via la polvere del giorno. Prima un lato, poi l’altro.</p></div></li>
-      <li><span class="regalo__numero" aria-hidden="true">4</span><div><h3>Ascolta.</h3><p>Porta le mani sul petto, una sopra l’altra. Senti il respiro che le solleva. Chiediti: come sto, adesso? Non serve rispondere.</p></div></li>
-    </ol>
-    <div class="regalo__coppia">
-      <p>Se a casa c’è qualcuno a cui vuoi bene, fatelo a turno. Tieni la sua testa tra le tue mani, fronte e nuca, per tre respiri, in silenzio. Non serve sapere fare massaggi per dire <em>sono qui</em>.</p>
+  <!-- 1. Accoglienza -->
+  <section class="bv-arrivo scuro">
+    <img class="grazie__simbolo grazie__simbolo--respiro" src="../assets/img/simbolo-avorio.svg" alt="" width="66" height="80">
+    <h1 class="bv-arrivo__titolo">Ti do il benvenuto,<br><em>meravigliosa creatura.</em></h1>
+    <p class="bv-arrivo__testo">Adesso fai parte della cerchia.<br>Sarai tra le prime persone a sapere quando apre il percorso completo.</p>
+    <a class="bv-arrivo__regalo" href="#regalo">
+      <span>Intanto, ecco il regalo che ti avevo promesso</span>
+      <span class="bv-cerchio" aria-hidden="true"><span class="bv-freccia"></span></span>
+    </a>
+  </section>
+
+  <!-- 2. Il regalo: il rituale -->
+  <section id="regalo" class="bv-rituale chiaro" aria-labelledby="titolo-rituale">
+    <div class="bv-colonna">
+      <p class="etichetta bv-etichetta">Il tuo regalo</p>
+      <h2 id="titolo-rituale" class="bv-rituale__titolo">Il rituale della soglia</h2>
+      <ul class="bv-info" aria-label="In breve">
+        <li>3 minuti</li>
+        <li>Quando torni a casa</li>
+        <li>Da solo o in due</li>
+      </ul>
+
+      <p class="bv-testo">In otto anni ho suonato a più di duemila porte. E ho imparato una cosa:</p>
+      <blockquote class="bv-citazione"><p>il momento più importante di un trattamento arriva prima di toccare.</p></blockquote>
+      <p class="bv-testo">È quando la persona smette di correre e <em>arriva</em>.<br>Questo rituale serve proprio a questo: arrivare a casa davvero, non solo con il corpo.</p>
+
+      <ol class="bv-passi">
+        <li class="bv-passo">
+          <span class="bv-passo__numero" aria-hidden="true">1</span>
+          <div>
+            <p class="bv-passo__quando">Appena entri</p>
+            <h3>Fermati sulla soglia.</h3>
+            <p>Prima del telefono, delle borse, della cena. Resta un momento vicino alla porta e lascia scendere le spalle.</p>
+          </div>
+        </li>
+        <li class="bv-passo">
+          <span class="bv-passo__numero" aria-hidden="true">2</span>
+          <div>
+            <p class="bv-passo__quando">Tre respiri lenti</p>
+            <h3>Tieni la testa tra le mani.</h3>
+            <p>Strofina i palmi finché si scaldano. Appoggia una mano sulla fronte e l’altra dietro la nuca.</p>
+            <p class="bv-passo__perche">È un modo semplice per dire ai pensieri: potete fermarvi.</p>
+          </div>
+        </li>
+        <li class="bv-passo">
+          <span class="bv-passo__numero" aria-hidden="true">3</span>
+          <div>
+            <p class="bv-passo__quando">Prima un lato, poi l’altro</p>
+            <h3>Togli la giornata dalle spalle.</h3>
+            <p>Fai scivolare piano la mano dalla nuca verso la spalla opposta, come per spazzare via la polvere del giorno.</p>
+          </div>
+        </li>
+        <li class="bv-passo">
+          <span class="bv-passo__numero" aria-hidden="true">4</span>
+          <div>
+            <p class="bv-passo__quando">Mani sul petto</p>
+            <h3>Ascolta.</h3>
+            <p>Porta le mani sul petto, una sopra l’altra. Senti il respiro che le solleva.</p>
+            <p class="bv-passo__perche">Chiediti: come sto, adesso? Non serve rispondere.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="bv-due scuro-2">
+        <p class="etichetta">Se lo fate in due</p>
+        <p class="bv-due__testo">Se a casa c’è qualcuno a cui vuoi bene, fatelo a turno. Tieni la sua testa tra le tue mani, fronte e nuca, per tre respiri, in silenzio.</p>
+        <p class="bv-due__chiusa">Non serve sapere fare massaggi per dire <em>sono qui</em>.</p>
+      </div>
+
+      <p class="bv-testo bv-testo--centro">Questo è un solo gesto.<br>Il percorso completo è fatto di rituali così: per te, per le persone a cui vuoi bene, per i diversi momenti della giornata.</p>
+      <p class="bv-avvertenza">Movimenti lenti e leggeri: se senti fastidio, fermati. I rituali sono esperienze di benessere e non sostituiscono trattamenti o indicazioni mediche.</p>
     </div>
-  </article>
+  </section>
 
-  <p class="grazie__testo">Questo è un solo gesto. Il percorso completo è fatto di rituali così: per te, per le persone a cui vuoi bene, per i diversi momenti della giornata.</p>
-  <p class="grazie__testo">Quando l’hai provato, rispondi alla mia email e dimmi com’è andata. Le leggo io, una per una.</p>
-  <div class="trenta-secondi">
-    <p class="etichetta">Cosa succede adesso</p>
-    <p class="grazie__testo">Quando il percorso completo sarà pronto, lo saprai tra i primi.</p>
-    <p class="grazie__testo">Nel frattempo, ogni tanto ti scriverò un piccolo consiglio da provare subito: gesti semplici e sane abitudini per stare meglio nel tuo corpo, da solo o con chi vuoi bene.</p>
-    <p class="trenta-secondi__invito">Credo che un mondo più gentile cominci da qui: da noi, un gesto alla volta. Grazie di farne parte.</p>
-  </div>
-  <p class="grazie__firma">A presto,<br>Andrea</p>
-  <p class="regalo__avvertenza">Movimenti lenti e leggeri: se senti fastidio, fermati. I rituali sono esperienze di benessere e non sostituiscono trattamenti o indicazioni mediche.</p>
+  <!-- 3. Dopo il regalo -->
+  <section class="bv-dopo scuro">
+    <div class="bv-colonna">
+      <h2 class="bv-dopo__titolo">Com’è andata?</h2>
+      <p class="bv-dopo__testo">Se ti va, rispondi alla mia email e raccontami come hai vissuto questo momento nuovo. Per me è importante saperlo.</p>
+
+      <div class="bv-adesso">
+        <p class="etichetta">Cosa succede adesso</p>
+        <ul>
+          <li><strong>Quando il percorso completo sarà pronto</strong>, lo saprai tra i primi.</li>
+          <li><strong>Nel frattempo</strong>, ogni tanto ti scriverò un piccolo consiglio da provare subito: gesti semplici e sane abitudini per stare meglio nel tuo corpo, da solo o con chi vuoi bene.</li>
+        </ul>
+      </div>
+
+      <p class="bv-visione">Credo che un mondo più gentile cominci da qui: da noi, un gesto alla volta. Grazie di farne parte.</p>
+
+      <div class="bv-firma">
+        <img src="../assets/img/andrea-viso.webp" alt="" width="52" height="52" loading="lazy" decoding="async">
+        <p>A presto,<br><span>Andrea</span></p>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="pie">
