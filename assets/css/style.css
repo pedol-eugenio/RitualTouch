@@ -1776,3 +1776,85 @@ label {
     display: none;
   }
 }
+
+/* ---------- Pagina /benvenuto (anteprima nuova grafica) ---------- */
+.bv-colonna { max-width: calc(var(--colonna) + 48px); margin: 0 auto; padding: 0 24px; }
+
+/* 1. Accoglienza */
+.bv-arrivo {
+  display: grid; justify-items: center; gap: 22px;
+  min-height: calc(88svh - var(--barra));
+  align-content: center;
+  padding: 56px 28px 48px; text-align: center;
+}
+.bv-arrivo__titolo { font-size: min(40px, 10.6vw); line-height: 1.12; color: var(--avorio); text-wrap: balance; }
+.bv-arrivo__titolo em { display: block; font-style: italic; color: var(--oro); }
+.bv-arrivo__testo { max-width: 30em; font-size: 17px; line-height: 1.65; color: var(--testo-2-scuro); }
+.bv-arrivo__regalo {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 14px;
+  margin-top: 18px; padding: 4px 8px;
+  font-family: var(--font-titoli); font-style: italic; font-weight: 500;
+  font-size: min(23px, 6.1vw); line-height: 1.3; color: var(--beige); text-decoration: none;
+}
+.bv-cerchio { display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid rgba(201,166,107,.6); border-radius: 50%; }
+.bv-freccia { width: 9px; height: 9px; margin-top: -4px; border-right: 1.5px solid var(--oro); border-bottom: 1.5px solid var(--oro); transform: rotate(45deg); }
+@media (prefers-reduced-motion: no-preference) { .bv-freccia { animation: freccia-giu 2.4s ease-in-out infinite; } }
+
+/* 2. Il rituale: fondo chiaro, testo scuro, più facile da leggere a lungo */
+.bv-rituale { padding: 64px 0 56px; }
+.bv-etichetta { color: var(--oro-etichetta); text-align: center; }
+.bv-rituale__titolo { margin-top: 10px; font-size: 40px; line-height: 1.08; text-align: center; color: var(--verde); }
+.bv-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 20px 0 36px; padding: 0; list-style: none; }
+.bv-info li { padding: 7px 14px; border: 1px solid rgba(19,42,36,.18); border-radius: 999px; font-size: 14px; color: var(--testo-2-chiaro); }
+.bv-testo { font-size: 18px; line-height: 1.7; color: var(--testo-2-chiaro); }
+.bv-testo em { font-style: italic; }
+.bv-testo--centro { margin-top: 36px; text-align: center; }
+.bv-citazione {
+  margin: 18px 0; padding: 4px 0 4px 18px; border-left: 2px solid var(--oro);
+  font-family: var(--font-titoli); font-style: italic; font-weight: 500;
+  font-size: 27px; line-height: 1.25; color: var(--verde);
+}
+
+/* I passi: una linea oro li unisce, così l'occhio scende da uno all'altro */
+.bv-passi { position: relative; display: grid; gap: 30px; margin: 44px 0 40px; padding: 0; list-style: none; }
+.bv-passi::before { content: ""; position: absolute; left: 21px; top: 22px; bottom: 22px; width: 1px; background: rgba(201,166,107,.55); }
+.bv-passo { position: relative; display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+.bv-passo__numero {
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--avorio); border: 1px solid var(--oro);
+  font-family: var(--font-testo); font-weight: 500; font-size: 17px; color: var(--verde);
+}
+.bv-passo .bv-passo__quando { margin-top: 2px; line-height: 1.4; font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--oro-etichetta); }
+.bv-passo h3 { margin: 4px 0 8px; font-weight: 600; font-size: 26px; line-height: 1.15; color: var(--verde); }
+.bv-passo p { font-size: 17px; line-height: 1.65; color: var(--testo-2-chiaro); }
+.bv-passo__perche { margin-top: 8px; font-family: var(--font-titoli); font-style: italic; font-size: 20px !important; line-height: 1.35 !important; color: var(--verde) !important; }
+
+.bv-due { display: grid; gap: 12px; padding: 26px 22px; border-radius: 20px; }
+.bv-due .etichetta { color: var(--oro); }
+.bv-due__testo { font-size: 17px; line-height: 1.65; color: var(--beige); }
+.bv-due__chiusa { font-family: var(--font-titoli); font-style: italic; font-weight: 500; font-size: 23px; line-height: 1.3; color: var(--avorio); }
+.bv-avvertenza { margin-top: 28px; font-size: 13px; line-height: 1.5; text-align: center; color: var(--testo-3-chiaro); }
+
+/* 3. Dopo il regalo */
+.bv-dopo { padding: 64px 0 72px; text-align: center; }
+.bv-dopo__titolo { font-size: 36px; line-height: 1.1; color: var(--avorio); }
+.bv-dopo__testo { margin-top: 14px; font-size: 17px; line-height: 1.65; color: var(--testo-2-scuro); }
+.bv-adesso { display: grid; gap: 14px; margin-top: 36px; padding: 24px 22px; border: 1px solid rgba(201,166,107,.35); border-radius: 20px; text-align: left; }
+.bv-adesso .etichetta { color: var(--oro); }
+.bv-adesso ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+.bv-adesso li { padding-left: 16px; border-left: 2px solid var(--oro); font-size: 16px; line-height: 1.6; color: var(--testo-2-scuro); }
+.bv-adesso strong { font-weight: 500; color: var(--avorio); }
+.bv-visione { margin-top: 36px; font-family: var(--font-titoli); font-style: italic; font-weight: 500; font-size: 24px; line-height: 1.3; color: var(--avorio); }
+.bv-firma { display: inline-flex; align-items: center; gap: 14px; margin-top: 28px; text-align: left; }
+.bv-firma img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+.bv-firma p { font-family: var(--font-titoli); font-style: italic; font-size: 20px; line-height: 1.25; color: var(--oro); }
+.bv-firma span { font-style: normal; font-weight: 600; color: var(--avorio); }
+
+@media (min-width: 900px) {
+  .bv-arrivo { min-height: 72vh; }
+  .bv-arrivo__titolo { font-size: 60px; }
+  .bv-rituale { padding: 96px 0 88px; }
+  .bv-rituale__titolo { font-size: 52px; }
+  .bv-citazione { font-size: 32px; }
+  .bv-dopo { padding: 96px 0; }
+}
