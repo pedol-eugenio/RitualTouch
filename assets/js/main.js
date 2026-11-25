@@ -32,20 +32,46 @@
     return "Rituale gratuito";
   }
 
-  // Alla fine del video la pagina scorre alla sezione «Resta ancora un momento».
-  // L'interfaccia di YouTube si carica solo dopo il clic su play.
-  function collegaFineVideo(iframe) {
-    var sezione = document.getElementById("resta");
-    if (!sezione) return;
+  // "1:47.4" → 107.4 secondi. Accetta anche "ore:minuti:secondi" e i soli secondi.
+  function leggiTempo(valore) {
+    var parti = String(valore || "").trim().replace(",", ".").split(":");
+    var totale = 0;
+    for (var i = 0; i < parti.length; i++) {
+      var numero = parseFloat(parti[i]);
+      if (isNaN(numero) || numero < 0) return -1;
+      totale = totale * 60 + numero;
+    }
+    return parti.length && parti[0] !== "" ? totale : -1;
+  }
+
+  // 107.4 → "1:47" (quello che si legge accanto all'argomento)
+  function scriviTempo(secondi) {
+    var interi = Math.floor(secondi);
+    var minuti = Math.floor(interi / 60);
+    var resto = interi % 60;
+    return minuti + ":" + (resto < 10 ? "0" : "") + resto;
+  }
+
+  function leggiCapitoli() {
+    var lista = Array.isArray(config.CAPITOLI) ? config.CAPITOLI : [];
+    var capitoli = [];
+    lista.forEach(function (riga) {
+      if (!riga) return;
+      var tempo = leggiTempo(riga[0]);
+      var nome = String(riga[1] || "").trim();
+      if (tempo >= 0 && nome) capitoli.push({ tempo: tempo, nome: nome });
+    });
+    capitoli.sort(function (a, b) {
+      return a.tempo - b.tempo;
+    });
+    return capitoli;
+  }
+
+  // Carica l'interfaccia di YouTube (solo dopo il primo clic) e collega il player.
+  function collegaPlayer(iframe, eventi) {
     function collega() {
       try {
-        new window.YT.Player(iframe, {
-          events: {
-            onStateChange: function (evento) {
-              if (evento.data === 0) scorriA(sezione); // 0 = video finito
-            }
-          }
-        });
+        new window.YT.Player(iframe, { events: eventi });
       } catch (e) {
         /* se non riesce, il video funziona comunque */
       }
@@ -103,13 +129,47 @@
       return;
     }
 
-    play.addEventListener("click", function () {
-      var iframe = document.createElement("iframe");
+    var iframe = null;
+    var player = null; // pronto solo quando YouTube ha finito di caricarsi
+    var salto = -1; // punto in cui saltare appena il player è pronto
+    var pulsantiCapitoli = [];
+    var capitoli = leggiCapitoli();
+    var controllo = null;
+
+    // Evidenzia l'argomento che si sta guardando
+    function segnaCapitolo(secondi) {
+      var attivo = -1;
+      for (var i = 0; i < capitoli.length; i++) {
+        if (secondi + 0.25 >= capitoli[i].tempo) attivo = i;
+      }
+      pulsantiCapitoli.forEach(function (pulsante, indice) {
+        if (indice === attivo) pulsante.setAttribute("aria-current", "true");
+        else pulsante.removeAttribute("aria-current");
+      });
+    }
+
+    function seguiVideo(inCorso) {
+      window.clearInterval(controllo);
+      if (!inCorso || !pulsantiCapitoli.length) return;
+      controllo = window.setInterval(function () {
+        try {
+          segnaCapitolo(player.getCurrentTime());
+        } catch (e) {
+          window.clearInterval(controllo);
+        }
+      }, 1000);
+    }
+
+    function avviaVideo(secondi) {
+      var inizio = Math.floor(secondi || 0);
+      iframe = document.createElement("iframe");
       iframe.className = "video__iframe";
       iframe.src =
         "https://www.youtube-nocookie.com/embed/" +
         encodeURIComponent(id) +
-        "?autoplay=1&playsinline=1&rel=0&enablejsapi=1&origin=" +
+        "?autoplay=1&playsinline=1&rel=0&enablejsapi=1" +
+        (inizio > 0 ? "&start=" + inizio : "") +
+        "&origin=" +
         encodeURIComponent(window.location.origin);
       iframe.title = titolo;
       iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
@@ -118,8 +178,73 @@
       play.hidden = true;
       box.appendChild(iframe);
       iframe.focus();
-      collegaFineVideo(iframe);
+
+      var sezione = document.getElementById("resta");
+      collegaPlayer(iframe, {
+        onReady: function (evento) {
+          player = evento.target;
+          if (salto >= 0) {
+            player.seekTo(salto, true);
+            player.playVideo();
+            salto = -1;
+          }
+        },
+        onStateChange: function (evento) {
+          seguiVideo(evento.data === 1); // 1 = in riproduzione
+          if (evento.data === 0 && sezione) scorriA(sezione); // 0 = video finito
+        }
+      });
+    }
+
+    play.addEventListener("click", function () {
+      avviaVideo(0);
     });
+
+    // Argomenti del video: un clic e il video salta a quel punto
+    var nav = document.querySelector("[data-capitoli]");
+    var lista = nav && nav.querySelector("[data-capitoli-lista]");
+    if (!lista || !capitoli.length) return;
+
+    function vaiA(secondi) {
+      // Se il video è fuori dallo schermo, lo riporta in vista
+      var riquadro = box.getBoundingClientRect();
+      if (riquadro.top < 0 || riquadro.bottom > window.innerHeight) {
+        box.scrollIntoView({ behavior: riduciMovimento ? "auto" : "smooth", block: "center" });
+      }
+      segnaCapitolo(secondi);
+      if (player) {
+        player.seekTo(secondi, true);
+        player.playVideo();
+      } else if (iframe) {
+        salto = secondi; // YouTube si sta ancora caricando
+      } else {
+        salto = secondi;
+        avviaVideo(secondi);
+      }
+    }
+
+    capitoli.forEach(function (capitolo) {
+      var voce = document.createElement("li");
+      var pulsante = document.createElement("button");
+      pulsante.type = "button";
+      pulsante.className = "capitoli__voce";
+      var tempo = document.createElement("span");
+      tempo.className = "capitoli__tempo";
+      tempo.textContent = scriviTempo(capitolo.tempo);
+      var nome = document.createElement("span");
+      nome.className = "capitoli__nome";
+      nome.textContent = capitolo.nome;
+      pulsante.appendChild(tempo);
+      pulsante.appendChild(nome);
+      pulsante.setAttribute("aria-label", capitolo.nome + ", da " + scriviTempo(capitolo.tempo));
+      pulsante.addEventListener("click", function () {
+        vaiA(capitolo.tempo);
+      });
+      voce.appendChild(pulsante);
+      lista.appendChild(voce);
+      pulsantiCapitoli.push(pulsante);
+    });
+    nav.hidden = false;
   }
 
   /* ---------- Modulo d'iscrizione (Kit) ---------- */

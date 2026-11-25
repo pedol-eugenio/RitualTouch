@@ -18,6 +18,14 @@
   VIDEO_TITOLO
     La scritta grande sulla copertina del video.
 
+  CAPITOLI
+    Gli argomenti del video, che compaiono sotto il video come pulsanti:
+    con un clic il video salta a quel punto.
+    Ogni riga è ["minuti:secondi", "Nome dell'argomento"].
+    Si possono usare anche i decimi di secondo, per esempio "1:47.4".
+    Per aggiungere un argomento copia una riga (con la virgola alla fine).
+    Se la lista è vuota [] gli argomenti non compaiono.
+
   KIT_FORM_ACTION
     L'indirizzo del modulo Kit (il valore di action="..." nel codice HTML di Kit).
     Se lo svuoti, il pulsante si disattiva e compare «Iscrizioni in apertura a breve.»
@@ -37,6 +45,14 @@ window.RITUAL_TOUCH_CONFIG = {
   YOUTUBE_VIDEO_ID: "",
   VIDEO_DURATA_MINUTI: "",
   VIDEO_TITOLO: "Un momento per te",
+  CAPITOLI: [
+    ["0:00", "Benvenuto"],
+    ["0:33", "Centratura"],
+    ["1:47.4", "Presa di contatto"],
+    ["2:26.6", "Trattamento piede sinistro"],
+    ["6:58.4", "Trattamento piede destro"],
+    ["9:33.7", "Informazione importante"]
+  ],
   KIT_FORM_ACTION: "https://app.kit.com/forms/10099436/subscriptions",
   FOTO_SCATTO_01: "",
   FOTO_SCATTO_02: "",
