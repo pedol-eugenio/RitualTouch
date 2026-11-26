@@ -32,36 +32,22 @@
     return "Rituale gratuito";
   }
 
-  // Alla fine del video la pagina scorre alla sezione «Resta ancora un momento».
-  // L'interfaccia di YouTube si carica solo dopo il clic su play.
-  function collegaFineVideo(iframe) {
-    var sezione = document.getElementById("resta");
-    if (!sezione) return;
-    function collega() {
-      try {
-        new window.YT.Player(iframe, {
-          events: {
-            onStateChange: function (evento) {
-              if (evento.data === 0) scorriA(sezione); // 0 = video finito
-            }
-          }
-        });
-      } catch (e) {
-        /* se non riesce, il video funziona comunque */
-      }
-    }
+  // Carica una sola volta l'interfaccia di YouTube, poi chiama pronto().
+  function caricaApiYoutube(pronto) {
     if (window.YT && window.YT.Player) {
-      collega();
+      pronto();
       return;
     }
     var precedente = window.onYouTubeIframeAPIReady;
     window.onYouTubeIframeAPIReady = function () {
       if (typeof precedente === "function") precedente();
-      collega();
+      pronto();
     };
+    if (document.querySelector("script[data-youtube-api]")) return;
     var script = document.createElement("script");
     script.src = "https://www.youtube.com/iframe_api";
     script.async = true;
+    script.setAttribute("data-youtube-api", "");
     document.head.appendChild(script);
   }
 
@@ -103,23 +89,95 @@
       return;
     }
 
-    play.addEventListener("click", function () {
-      var iframe = document.createElement("iframe");
-      iframe.className = "video__iframe";
-      iframe.src =
-        "https://www.youtube-nocookie.com/embed/" +
-        encodeURIComponent(id) +
-        "?autoplay=1&playsinline=1&rel=0&enablejsapi=1&origin=" +
-        encodeURIComponent(window.location.origin);
-      iframe.title = titolo;
-      iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
-      iframe.setAttribute("allowfullscreen", "");
-      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    /*
+      Un clic solo. YouTube si prepara sotto la copertina poco dopo l'apertura
+      della pagina; il centro della copertina lascia passare il tocco al player,
+      così il video parte (con l'audio) al primo tocco anche su iPhone.
+      Il bordo alto e quello basso restano della copertina, per non aprire per
+      sbaglio i link di YouTube (titolo, logo).
+    */
+    var sezione = document.getElementById("resta");
+    var player = null;
+    var pronto = false;
+    var avviato = false;
+    var iframe = null;
+
+    function mostraPlayer() {
+      if (avviato) return;
+      avviato = true;
+      box.classList.add("video--in-corso");
       play.hidden = true;
-      box.appendChild(iframe);
-      iframe.focus();
-      collegaFineVideo(iframe);
+    }
+
+    function preparaPlayer(avviaSubito) {
+      if (player) return;
+      var segnaposto = document.createElement("div");
+      segnaposto.className = "video__iframe video__iframe--attesa";
+      box.insertBefore(segnaposto, box.firstChild);
+      caricaApiYoutube(function () {
+        try {
+          player = new window.YT.Player(segnaposto, {
+            host: "https://www.youtube-nocookie.com",
+            videoId: id,
+            playerVars: {
+              autoplay: avviaSubito ? 1 : 0,
+              playsinline: 1,
+              rel: 0,
+              origin: window.location.origin
+            },
+            events: {
+              onReady: function () {
+                iframe = player.getIframe();
+                iframe.title = titolo;
+                iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+                pronto = true;
+                box.classList.add("video--pronto");
+                if (avviaSubito) {
+                  player.playVideo();
+                  mostraPlayer();
+                }
+              },
+              onStateChange: function (evento) {
+                // 1 = in riproduzione, 3 = sta caricando: la persona ha premuto play
+                if (evento.data === 1 || evento.data === 3) mostraPlayer();
+                if (evento.data === 0 && sezione) scorriA(sezione); // 0 = video finito
+              }
+            }
+          });
+        } catch (e) {
+          /* se YouTube non risponde resta la copertina */
+        }
+      });
+    }
+
+    // Tocco sulla copertina fuori dal centro, o prima che YouTube sia pronto
+    function avviaDaCopertina() {
+      if (pronto && player) {
+        player.playVideo();
+        mostraPlayer();
+        if (iframe) iframe.focus();
+      } else {
+        preparaPlayer(true);
+        box.classList.add("video--attesa");
+      }
+    }
+    play.addEventListener("click", avviaDaCopertina);
+
+    // Il tocco al centro arriva direttamente a YouTube: la pagina perde il focus
+    window.addEventListener("blur", function () {
+      if (pronto && document.activeElement === iframe) {
+        window.setTimeout(mostraPlayer, 150);
+      }
     });
+
+    // Prepara YouTube appena la pagina è caricata, senza rallentarla
+    function quandoLibero() {
+      window.setTimeout(function () {
+        preparaPlayer(false);
+      }, 600);
+    }
+    if (document.readyState === "complete") quandoLibero();
+    else window.addEventListener("load", quandoLibero);
   }
 
   /* ---------- Modulo d'iscrizione (Kit) ---------- */
