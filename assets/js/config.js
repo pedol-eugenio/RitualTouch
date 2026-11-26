@@ -36,7 +36,7 @@
 window.RITUAL_TOUCH_CONFIG = {
   YOUTUBE_VIDEO_ID: "q7e32wBfAu0",
   VIDEO_DURATA_MINUTI: "10",
-  VIDEO_TITOLO: "Un momento per te",
+  VIDEO_TITOLO: "Il rituale del piede",
   KIT_FORM_ACTION: "https://app.kit.com/forms/10099436/subscriptions",
   FOTO_SCATTO_01: "",
   FOTO_SCATTO_02: "",
