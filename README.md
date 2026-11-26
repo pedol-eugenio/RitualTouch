@@ -61,7 +61,7 @@ window.RITUAL_TOUCH_CONFIG = {
 };
 ```
 
-- **Video:** caricalo su YouTube come *non in elenco*. Senza ID la copertina resta, il pulsante play non compare, l'etichetta dice «IN ARRIVO» e sotto il video compaiono «Il primo rituale arriva tra pochi giorni.» e il pulsante «Entra nella cerchia». Con l'ID compare il play e torna la frase «Prima di premere play: un respiro.»; YouTube si carica solo quando la persona lo preme, e alla fine del video la pagina scorre da sola alla sezione «Resta ancora un momento».
+- **Video:** caricalo su YouTube come *non in elenco*. Senza ID la copertina resta, il pulsante play non compare, l'etichetta dice «IN ARRIVO» e sotto il video compaiono «Il primo rituale arriva tra pochi giorni.» e il pulsante «Entra nella cerchia». Con l'ID compare il play e torna la frase «Prima di premere play: un respiro.»; YouTube si prepara sotto la copertina dopo il caricamento della pagina, così il video parte con un solo tocco (anche su iPhone, con l'audio); alla fine del video la pagina scorre da sola alla sezione «Resta ancora un momento».
 - **Foto degli scatti 01–03:** prima vanno ottimizzate (formato WebP, larghezza 1600 px per la grande e 200 px per le piccole), poi messe in `assets/img` e indicate qui, per esempio `"assets/img/scatto-01.webp"`. Finché sono vuote, al posto della foto grande c'è una fascia chiara con la frase «Il corpo è sempre qui.» e le foto piccole non compaiono.
 - **Kit:** se `KIT_FORM_ACTION` viene svuotato, il pulsante «Voglio esserci» si disattiva e compare «Iscrizioni in apertura a breve.».
 
@@ -196,7 +196,7 @@ Senza parametro, la fonte registrata è `diretto`.
 - Verificato a 320, 360, 375, 390, 414, 430, 1024 e 1440 px: nessuno scorrimento orizzontale. Su telefono titolo, video e frase stanno nella prima schermata (anche su iPhone SE); «Ciao, meravigliosa creatura.» resta su una riga.
 - Barra superiore fissa su tutte le pagine; «← Indietro» in /faq e /privacy riporta al punto di prima senza perdere quello che era stato scritto nel modulo.
 - Pulsante fisso «Voglio esserci» sotto i 900 px: compare dopo la sezione Arrivo, sparisce quando l'iscrizione è visibile, al tocco porta al modulo e mette il cursore nel campo Nome.
-- Video: copertina con «IN ARRIVO» finché manca l'ID; con l'ID, pulsante play con l'animazione «respiro», YouTube (modalità a privacy avanzata) solo al clic, scorrimento alla sezione 2 alla fine del video. Provato con un video simulato.
+- Video: copertina con «IN ARRIVO» finché manca l'ID; con l'ID, pulsante play con l'animazione «respiro», YouTube (modalità a privacy avanzata) pronto sotto la copertina e avvio con un solo tocco, scorrimento alla sezione 2 alla fine del video. Provato con un video simulato.
 - Modulo collegato a Kit: blocca l'invio senza la spunta, messaggi in italiano sotto i campi, fonte da `?utm_source=`, consenso salvato con la data dell'informativa. Provato con un invio simulato.
 - Domande frequenti a tendina da un unico file: una risposta aperta alla volta, funzionano con tocco, mouse e tastiera.
 - Nessuna richiesta a siti esterni prima del clic sul video: niente tracker, niente cookie, caratteri ospitati sul sito.
