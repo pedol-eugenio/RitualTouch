@@ -890,11 +890,26 @@ label {
   line-height: 1.5;
   color: var(--testo-3-scuro);
 }
+.bv-invito {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  margin: 8px 0 28px;
+  text-align: center;
+}
+.bv-invito__testo {
+  font-family: var(--font-titoli);
+  font-size: 22px;
+  line-height: 1.3;
+}
+.bv-invito__nota {
+  font-size: 14px;
+  opacity: 0.75;
+}
 .bv-canale {
   display: flex;
   width: 100%;
   height: 58px;
-  margin: 8px 0 24px;
 }
 
 .firma {
