@@ -306,7 +306,47 @@
         pulsante.disabled = true;
         pulsante.textContent = "Invio in corso…";
       }
+
+      // Invio senza cambiare pagina: il modulo sparisce e compare l'invito al canale.
+      // Se qualcosa va storto, si torna all'invio classico (Kit porta a /grazie).
+      if (!window.fetch || !window.FormData) return;
+      evento.preventDefault();
+      var dati = new FormData(modulo);
+      window
+        .fetch(indirizzo, { method: "POST", body: dati, headers: { Accept: "application/json" } })
+        .then(function (risposta) {
+          return risposta.ok ? risposta.json() : null;
+        })
+        .then(function (json) {
+          if (json && json.status === "success") mostraRiuscito();
+          else modulo.submit();
+        })
+        .catch(function () {
+          modulo.submit();
+        });
     });
+
+    function mostraRiuscito() {
+      var riuscito = document.querySelector("[data-riuscito]");
+      if (!riuscito) {
+        modulo.submit();
+        return;
+      }
+      var nome = document.getElementById("nome");
+      var campoNome = riuscito.querySelector("[data-riuscito-nome]");
+      var valore = nome ? nome.value.trim().split(/\s+/)[0] : "";
+      if (campoNome && valore) campoNome.textContent = ", " + valore;
+      modulo.hidden = true;
+      var sotto = document.querySelector("[data-prima-iscrizione]");
+      if (sotto) sotto.hidden = true;
+      riuscito.hidden = false;
+      scorriA(riuscito);
+      try {
+        riuscito.focus({ preventScroll: true });
+      } catch (e) {
+        riuscito.focus();
+      }
+    }
 
     // Se la persona torna indietro dal browser, il pulsante torna utilizzabile.
     window.addEventListener("pageshow", function () {

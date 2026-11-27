@@ -1,3 +1,5 @@
 # Per Cloudflare Pages (se il sito verrà spostato lì). Su Vercel vale vercel.json.
 /cookie   /privacy/   308
 /cookie/  /privacy/   308
+/canale   https://whatsapp.com/channel/0029Vb9k4D04inovWhl0fs0a   302
+/canale/  https://whatsapp.com/channel/0029Vb9k4D04inovWhl0fs0a   302

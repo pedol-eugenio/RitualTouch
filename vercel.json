@@ -1,21 +1,56 @@
 {
   "redirects": [
-    { "source": "/cookie", "destination": "/privacy/", "permanent": true },
-    { "source": "/cookie/", "destination": "/privacy/", "permanent": true }
+    {
+      "source": "/cookie",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/cookie/",
+      "destination": "/privacy/",
+      "permanent": true
+    },
+    {
+      "source": "/canale",
+      "destination": "https://whatsapp.com/channel/0029Vb9k4D04inovWhl0fs0a",
+      "permanent": false
+    },
+    {
+      "source": "/canale/",
+      "destination": "https://whatsapp.com/channel/0029Vb9k4D04inovWhl0fs0a",
+      "permanent": false
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
       "source": "/assets/fonts/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     }
   ]
 }
