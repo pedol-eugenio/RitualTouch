@@ -170,14 +170,8 @@
       }
     });
 
-    // Prepara YouTube appena la pagina è caricata, senza rallentarla
-    function quandoLibero() {
-      window.setTimeout(function () {
-        preparaPlayer(false);
-      }, 600);
-    }
-    if (document.readyState === "complete") quandoLibero();
-    else window.addEventListener("load", quandoLibero);
+    // Prepara YouTube subito: deve essere pronto prima che la persona tocchi play
+    preparaPlayer(false);
   }
 
   /* ---------- Modulo d'iscrizione (Kit) ---------- */
