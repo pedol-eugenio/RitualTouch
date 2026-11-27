@@ -307,24 +307,39 @@
         pulsante.textContent = "Invio in corso…";
       }
 
-      // Invio senza cambiare pagina: il modulo sparisce e compare l'invito al canale.
-      // Se qualcosa va storto, si torna all'invio classico (Kit porta a /grazie).
+      // Invio istantaneo: il messaggio compare subito, l'iscrizione parte in sottofondo
+      // (keepalive: arriva a Kit anche se la persona apre WhatsApp un attimo dopo).
+      // Se Kit risponde con un errore, torna il modulo con un avviso.
       if (!window.fetch || !window.FormData) return;
       evento.preventDefault();
       var dati = new FormData(modulo);
+      mostraRiuscito();
       window
-        .fetch(indirizzo, { method: "POST", body: dati, headers: { Accept: "application/json" } })
+        .fetch(indirizzo, { method: "POST", body: dati, headers: { Accept: "application/json" }, keepalive: true })
         .then(function (risposta) {
           return risposta.ok ? risposta.json() : null;
         })
         .then(function (json) {
-          if (json && json.status === "success") mostraRiuscito();
-          else modulo.submit();
+          if (!json || json.status !== "success") tornaAlModulo();
         })
         .catch(function () {
-          modulo.submit();
+          tornaAlModulo();
         });
     });
+
+    function tornaAlModulo() {
+      var riuscito = document.querySelector("[data-riuscito]");
+      if (riuscito) riuscito.hidden = true;
+      modulo.hidden = false;
+      if (pulsante) {
+        pulsante.disabled = false;
+        pulsante.textContent = testoPulsante;
+      }
+      if (stato) {
+        stato.textContent = "Non sono riuscito a iscriverti. Controlla la connessione e riprova.";
+        stato.hidden = false;
+      }
+    }
 
     function mostraRiuscito() {
       var riuscito = document.querySelector("[data-riuscito]");
@@ -340,7 +355,11 @@
       var sotto = document.querySelector("[data-prima-iscrizione]");
       if (sotto) sotto.hidden = true;
       riuscito.hidden = false;
-      scorriA(riuscito);
+      // Scorre solo se il messaggio non è già davanti agli occhi
+      var r = riuscito.getBoundingClientRect();
+      if (r.top < 0 || r.top > (window.innerHeight || 0) * 0.5) {
+        riuscito.scrollIntoView({ behavior: "auto", block: "center" });
+      }
       try {
         riuscito.focus({ preventScroll: true });
       } catch (e) {
