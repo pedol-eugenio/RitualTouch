@@ -95,6 +95,8 @@
       <h1 id="titolo-arrivo" class="arrivo__titolo">Prenditi cura di te <em>e di chi vuoi bene.</em></h1>
       <div class="arrivo__media">
         <div class="video" data-video>
+          <!-- Il player di YouTube si prepara subito, sotto la copertina: così basta un tocco su play -->
+          <script>(function(){var c=window.RITUAL_TOUCH_CONFIG||{},v=String(c.YOUTUBE_VIDEO_ID||"").trim(),m=/^[A-Za-z0-9_-]{11}$/.test(v)?[0,v]:v.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/);if(!m)return;var f=document.createElement("iframe");f.className="video__iframe";f.setAttribute("data-video-player","");f.onload=function(){f.setAttribute("data-caricato","")};f.src="https://www.youtube-nocookie.com/embed/"+m[1]+"?playsinline=1&rel=0&enablejsapi=1&origin="+encodeURIComponent(location.origin);f.setAttribute("allow","autoplay; encrypted-media; picture-in-picture; fullscreen");f.setAttribute("allowfullscreen","");f.setAttribute("referrerpolicy","strict-origin-when-cross-origin");f.title="Video";var s=document.currentScript;s.parentNode.insertBefore(f,s)})();</script>
           <!-- La frase sta sulla copertina, subito sopra il pulsante play -->
           <p class="arrivo__frase">Prima di premere play: un respiro.</p>
           <img class="video__copertina"
