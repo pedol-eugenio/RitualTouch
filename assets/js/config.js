@@ -34,7 +34,7 @@
     Restano nascoste finché qui c'è false. Scrivi true quando Andrea conferma il permesso.
 */
 window.RITUAL_TOUCH_CONFIG = {
-  YOUTUBE_VIDEO_ID: "q7e32wBfAu0",
+  YOUTUBE_VIDEO_ID: "Xi0XMWy31ko",
   VIDEO_DURATA_MINUTI: "10",
   VIDEO_TITOLO: "Il rituale del piede",
   KIT_FORM_ACTION: "https://app.kit.com/forms/10099436/subscriptions",
