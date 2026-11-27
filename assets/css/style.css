@@ -1162,6 +1162,29 @@ label {
   color: var(--beige);
 }
 
+/* Prova: i messaggi di chi ha provato */
+.prova {
+  display: grid;
+  gap: 10px;
+  margin: 8px 0 28px;
+}
+.prova__titolo {
+  font-family: var(--font-titoli);
+  font-size: 26px;
+  line-height: 1.25;
+}
+.prova__sotto {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.prova__messaggio {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(19, 42, 36, 0.12);
+}
+
 /* Ritual Touch in una frase */
 .una-frase {
   display: grid;
