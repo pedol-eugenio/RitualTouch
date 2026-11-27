@@ -129,7 +129,7 @@ I record `mx` e `imap` li gestisce Aruba per la posta. La casella è `hello@ritu
 - **Campi personalizzati in Kit:** `cellulare`, `fonte` e `consenso`, tutti creati.
 - **Dopo l'invio:** Kit porta a `https://ritualtouch.it/grazie`.
 - **Doppia conferma:** attiva. Dopo il clic su «Confermo l'iscrizione» Kit porta a `https://ritualtouch.it/`.
-- **Indirizzo in fondo alle email** (obbligatorio per legge): Via Alessandro Volta 17, 20064 Gorgonzola (MI), Italia. Si cambia in *Settings* → *Email* → *Mailing address*.
+- **Indirizzo in fondo alle email** (obbligatorio per legge): è la sede della ditta. Si cambia in *Settings* → *Email* → *Mailing address*.
 - **GDPR Settings di Kit:** «Donʼt show to anyone». Va lasciato così: il consenso lo raccoglie già la casella del modulo sul sito, e accenderlo aggiungerebbe una seconda pagina di consenso.
 - **Mittente predefinito:** «Andrea · Ritual Touch» <hello@ritualtouch.it> (dal 29 ottobre 2026; prima era hello.ritualtouch@gmail.com, che con Kit finiva in Spam).
 - **Prova del 27 ottobre 2026:** tutto funziona, ma l'email di conferma era finita in Spam (vedi sotto).
@@ -220,7 +220,7 @@ Dalle due foto originali (1254×1254 px, sfondo verde), sempre senza il pollice:
 - **Video:** «IN ARRIVO» finché non ci sono ID e durata.
 - **Foto degli scatti 01–03:** fascia chiara con la frase finché non arrivano.
 - **Frasi della community:** nascoste finché non c'è il permesso.
-- **Privacy:** completa (sede: via Alessandro Volta 17, 20064 Gorgonzola MI); il testo va verificato da chi si occupa di privacy.
+- **Privacy:** completa (con la sede della ditta); il testo va verificato da chi si occupa di privacy.
 
 ### Cosa deve configurare Andrea
 - Video su YouTube (ID e durata), foto degli scatti 01–03, permesso per le tre frasi.
