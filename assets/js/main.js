@@ -343,6 +343,10 @@
       var riuscito = document.querySelector("[data-riuscito]");
       if (riuscito) riuscito.hidden = true;
       modulo.hidden = false;
+      var titoloIscrizione = document.getElementById("titolo-iscrizione");
+      if (titoloIscrizione) titoloIscrizione.hidden = false;
+      var sotto = document.querySelector("[data-prima-iscrizione]");
+      if (sotto) sotto.hidden = false;
       if (pulsante) {
         pulsante.disabled = false;
         pulsante.textContent = testoPulsante;
@@ -366,6 +370,8 @@
       modulo.hidden = true;
       var sotto = document.querySelector("[data-prima-iscrizione]");
       if (sotto) sotto.hidden = true;
+      var titoloIscrizione = document.getElementById("titolo-iscrizione");
+      if (titoloIscrizione) titoloIscrizione.hidden = true;
       riuscito.hidden = false;
       // Scorre solo se il messaggio non è già davanti agli occhi
       var r = riuscito.getBoundingClientRect();
