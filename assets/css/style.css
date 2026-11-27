@@ -731,9 +731,8 @@ label {
 }
 /* Sempre su una riga: 30 px, che scendono quanto basta sui telefoni più stretti */
 .iscrizione h2 {
-  font-size: min(30px, calc((100vw - 48px) / 10.8));
-  line-height: 1.1;
-  white-space: nowrap;
+  font-size: 30px;
+  line-height: 1.15;
 }
 .iscrizione__sotto {
   font-size: 16px;
@@ -1034,6 +1033,12 @@ label {
   line-height: 1.5;
   color: var(--testo-2-chiaro);
 }
+.rituali__nota {
+  margin-top: 16px;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--testo-2-chiaro);
+}
 
 /* ---------- 5. Chi sono ---------- */
 .andrea {
@@ -1162,44 +1167,44 @@ label {
   color: var(--beige);
 }
 
-/* Prova: i messaggi di chi ha provato */
+/* Prova: i messaggi di chi ha provato, a scorrimento orizzontale */
 .prova {
   display: grid;
-  gap: 10px;
-  margin: 8px 0 28px;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201, 166, 107, 0.3);
 }
 .prova__titolo {
   font-family: var(--font-titoli);
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.25;
+  color: var(--avorio);
 }
 .prova__sotto {
   font-size: 16px;
-  margin-bottom: 6px;
+  color: var(--beige);
+}
+.prova__scorri {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.prova__scorri::-webkit-scrollbar {
+  display: none;
 }
 .prova__messaggio {
-  display: block;
-  width: 100%;
+  flex: 0 0 82%;
+  max-width: 420px;
   height: auto;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(19, 42, 36, 0.12);
-}
-
-/* Ritual Touch in una frase */
-.una-frase {
-  display: grid;
-  gap: 12px;
-  padding: 0 0 28px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid rgba(201, 166, 107, 0.45);
-}
-.una-frase__testo {
-  font-family: var(--font-titoli);
-  font-size: 28px;
-  line-height: 1.25;
-}
-.una-frase__testo em {
-  color: var(--oro-etichetta);
+  border-radius: 14px;
+  scroll-snap-align: start;
 }
 
 /* ---------- 6. Chiusura, domande frequenti e contatto ---------- */
@@ -1856,7 +1861,7 @@ label {
     padding-top: 56px;
   }
   .modi {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
   }
 
