@@ -93,6 +93,7 @@
     <div class="arrivo__griglia">
       <p class="etichetta arrivo__etichetta" data-video-etichetta>In arrivo</p>
       <h1 id="titolo-arrivo" class="arrivo__titolo">Prenditi cura di te <em>e di chi vuoi bene.</em></h1>
+      <p class="arrivo__sotto">Rituali guidati in video, da vivere a casa: gesti semplici per prenderti cura del tuo corpo e di quello di chi ami.</p>
       <div class="arrivo__media">
         <div class="video" data-video>
           <!-- Il player di YouTube si prepara subito, sotto la copertina: così basta un tocco su play -->
@@ -128,25 +129,6 @@
       <span class="linea-oro" aria-hidden="true"></span>
       <h2 id="titolo-resta" data-dissolvenza>Come si sente il tuo corpo, adesso?</h2>
       <p class="resta__testo" data-dissolvenza>Questo è un assaggio. Sta arrivando il percorso completo: rituali per prenderti cura di te e delle persone a cui vuoi bene.</p>
-      <div class="cerchia" data-dissolvenza>
-        <p class="etichetta">La cerchia</p>
-        <h3>Le Meravigliose Creature</h3>
-        <p class="cerchia__testo">Così chiamo chi mi segue. Ora è anche chi fa parte di Ritual Touch.</p>
-        <ul class="vantaggi">
-          <li class="vantaggio">
-            <h4>Prima di chiunque altro</h4>
-            <p>Quando apre il percorso completo, lo saprai prima degli altri.</p>
-          </li>
-          <li class="vantaggio">
-            <h4>Un prezzo riservato</h4>
-            <p>Nelle prime 48 ore dall’apertura, un prezzo pensato solo per le Meravigliose Creature.</p>
-          </li>
-          <li class="vantaggio">
-            <h4>Canale su WhatsApp</h4>
-            <p>Piccoli gesti di cura da provare subito. Il tuo numero resta privato.</p>
-          </li>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -154,7 +136,33 @@
   <section id="iscrizione" class="iscrizione scuro" aria-labelledby="titolo-iscrizione">
     <div class="iscrizione__colonna">
       <h2 id="titolo-iscrizione">Entra nelle Meravigliose Creature</h2>
-      <p class="iscrizione__sotto" data-prima-iscrizione>Bastano nome ed email.</p>
+      <div class="ricevi" data-prima-iscrizione>
+        <p class="iscrizione__sotto">Così chiamo chi mi segue. Entrando, ricevi:</p>
+        <ol class="ricevi__lista">
+          <li class="ricevi__voce">
+            <span class="ricevi__numero" aria-hidden="true">1</span>
+            <div>
+              <h3>Prima di chiunque altro</h3>
+              <p>Quando apre il percorso completo, lo saprai prima degli altri.</p>
+            </div>
+          </li>
+          <li class="ricevi__voce">
+            <span class="ricevi__numero" aria-hidden="true">2</span>
+            <div>
+              <h3>Un prezzo riservato</h3>
+              <p>Nelle prime 48 ore dall’apertura, un prezzo pensato solo per le Meravigliose Creature.</p>
+            </div>
+          </li>
+          <li class="ricevi__voce">
+            <span class="ricevi__numero" aria-hidden="true">3</span>
+            <div>
+              <h3>Il canale su WhatsApp</h3>
+              <p>Piccoli gesti di cura da provare subito. Il tuo numero resta privato.</p>
+            </div>
+          </li>
+        </ol>
+        <p class="ricevi__basta">Bastano nome ed email.</p>
+      </div>
 
       <form class="modulo" method="post" novalidate data-modulo>
         <div class="campo">
@@ -209,7 +217,7 @@
     </div>
     <div class="rituali__colonna">
       <h2 id="titolo-rituali" data-dissolvenza>Cosa trovi nel percorso</h2>
-      <p class="rituali__testo" data-dissolvenza>10 rituali guidati in video, da 15 a 20 minuti l’uno. Ti accompagno passo passo: massaggio, digitopressione, stretching, respiro e consapevolezza, uniti in un unico momento di cura.</p>
+      <p class="rituali__testo" data-dissolvenza>10 rituali guidati in video, da 15 a 20 minuti l’uno. Ti accompagno passo passo: massaggio, digitopressione, stretching, respiro e consapevolezza, uniti in un unico momento.</p>
       <div class="modi">
         <div class="modo" data-dissolvenza>
           <span data-foto-per-te hidden></span>
@@ -267,11 +275,23 @@
         <div class="prova" data-dissolvenza>
           <p class="prova__titolo">Prima di metterlo online, l’ho fatto provare.</p>
           <p class="prova__sotto">Ecco cosa mi hanno scritto.</p>
-          <div class="prova__scorri" tabindex="0" aria-label="Messaggi di chi ha provato il rituale">
-            <img class="prova__messaggio" src="assets/img/prova-1.webp" width="900" height="382" loading="lazy" decoding="async"
-                 alt="Messaggio WhatsApp: «Bravo Andrea, è stato facile seguirti, professionale e chiaro, come sempre! E l’esercizio è efficace!! Un’altra pillola del tuo sapere da serbare con cura e mettere in pratica.»">
-            <img class="prova__messaggio" src="assets/img/prova-2.webp" width="900" height="539" loading="lazy" decoding="async"
-                 alt="Messaggio WhatsApp: «Ciao Andrea, mi è piaciuto molto seguire i rituali. Mi sembrava che tu fossi vicino e la tua voce mi guidava in questa bellissima esperienza. Prendersi una pausa di benessere dona serenità e pienezza di vita. Mi sento rinata. Ti ringrazio per queste perle di benessere che ci doni. Un affettuoso abbraccio!»">
+          <div class="carosello" data-carosello>
+            <div class="carosello__binario" tabindex="0" role="region" aria-label="Messaggi di chi ha provato il rituale" data-carosello-binario>
+              <figure class="carosello__card">
+                <img src="assets/img/prova-1.webp" width="900" height="382" loading="lazy" decoding="async"
+                     alt="Messaggio WhatsApp: «Bravo Andrea, è stato facile seguirti, professionale e chiaro, come sempre! E l’esercizio è efficace!! Un’altra pillola del tuo sapere da serbare con cura e mettere in pratica.»">
+              </figure>
+              <figure class="carosello__card">
+                <img src="assets/img/prova-2.webp" width="900" height="539" loading="lazy" decoding="async"
+                     alt="Messaggio WhatsApp: «Ciao Andrea, mi è piaciuto molto seguire i rituali. Mi sembrava che tu fossi vicino e la tua voce mi guidava in questa bellissima esperienza. Prendersi una pausa di benessere dona serenità e pienezza di vita. Mi sento rinata. Ti ringrazio per queste perle di benessere che ci doni. Un affettuoso abbraccio!»">
+              </figure>
+            </div>
+            <div class="carosello__controlli">
+              <button type="button" class="carosello__freccia" data-carosello-prec aria-label="Messaggio precedente"><span aria-hidden="true">‹</span></button>
+              <div class="carosello__punti" data-carosello-punti></div>
+              <button type="button" class="carosello__freccia" data-carosello-succ aria-label="Messaggio successivo"><span aria-hidden="true">›</span></button>
+            </div>
+            <p class="carosello__suggerimento" aria-hidden="true">Scorri per leggere</p>
           </div>
         </div>
         <!-- Restano nascoste finché in config.js CITAZIONI_APPROVATE è false -->
@@ -290,7 +310,8 @@
   <!-- ========== 6. CHIUSURA, DOMANDE FREQUENTI E CONTATTO ========== -->
   <section id="faq" class="chiusura chiaro" aria-labelledby="titolo-faq">
     <div class="chiusura__blocco">
-      <img class="chiusura__simbolo" src="assets/img/simbolo-verde.svg" alt="" width="30" height="36" loading="lazy">
+      <p class="chiusura__titolo" data-dissolvenza>Prendersi cura di sé non è un altro compito.</p>
+      <p class="chiusura__testo" data-dissolvenza>La testa corre tra quello che è stato e quello che sarà. Pochi minuti e un gesto semplice bastano per tornare qui.</p>
       <p class="chiusura__frase" data-dissolvenza>Non devi farlo perfettamente. Devi solo concederti il momento.</p>
       <p class="chiusura__nota">I rituali sono esperienze di benessere e non sostituiscono trattamenti o indicazioni mediche.</p>
     </div>

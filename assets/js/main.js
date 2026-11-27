@@ -561,6 +561,65 @@
     });
   }
 
+  /* ---------- Carosello dei messaggi ---------- */
+
+  function preparaCarosello() {
+    var box = document.querySelector("[data-carosello]");
+    if (!box) return;
+    var binario = box.querySelector("[data-carosello-binario]");
+    var carte = [].slice.call(binario.querySelectorAll(".carosello__card"));
+    var puntiBox = box.querySelector("[data-carosello-punti]");
+    var prec = box.querySelector("[data-carosello-prec]");
+    var succ = box.querySelector("[data-carosello-succ]");
+    if (!carte.length) return;
+
+    var punti = carte.map(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "carosello__punto";
+      b.setAttribute("aria-label", "Messaggio " + (i + 1) + " di " + carte.length);
+      b.addEventListener("click", function () { vaiA(i); });
+      puntiBox.appendChild(b);
+      return b;
+    });
+
+    function indice() {
+      var sinistra = binario.scrollLeft;
+      var migliore = 0;
+      var distanza = Infinity;
+      carte.forEach(function (c, i) {
+        var d = Math.abs(c.offsetLeft - binario.offsetLeft - sinistra);
+        if (d < distanza) { distanza = d; migliore = i; }
+      });
+      if (binario.scrollLeft + binario.clientWidth >= binario.scrollWidth - 4) migliore = carte.length - 1;
+      return migliore;
+    }
+    function aggiorna() {
+      var i = indice();
+      punti.forEach(function (p, k) { p.setAttribute("aria-current", k === i ? "true" : "false"); });
+      prec.disabled = i === 0;
+      succ.disabled = i === carte.length - 1;
+      if (i > 0) box.classList.add("carosello--visto");
+    }
+    function vaiA(i) {
+      var c = carte[Math.max(0, Math.min(carte.length - 1, i))];
+      binario.scrollTo({ left: c.offsetLeft - binario.offsetLeft, behavior: riduciMovimento ? "auto" : "smooth" });
+    }
+    prec.addEventListener("click", function () { vaiA(indice() - 1); });
+    succ.addEventListener("click", function () { vaiA(indice() + 1); });
+    var attesa = null;
+    binario.addEventListener("scroll", function () {
+      window.cancelAnimationFrame(attesa);
+      attesa = window.requestAnimationFrame(aggiorna);
+    }, { passive: true });
+    binario.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); vaiA(indice() + 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); vaiA(indice() - 1); }
+    });
+    window.addEventListener("resize", aggiorna);
+    aggiorna();
+  }
+
   function avvia() {
     preparaVideo();
     preparaModulo();
@@ -568,6 +627,7 @@
     preparaPulsanteFisso();
     preparaDissolvenze();
     preparaContatori();
+    preparaCarosello();
   }
 
   if (document.readyState === "loading") {
