@@ -115,6 +115,18 @@
     }
     iframe.title = titolo;
 
+    // A video finito la pagina torna com'era prima del play
+    function tornaCopertina() {
+      avviato = false;
+      vuolePartire = false;
+      box.classList.remove("video--in-corso", "video--attesa");
+      play.hidden = false;
+      try {
+        if (player) player.seekTo(0, false);
+        if (player) player.pauseVideo();
+      } catch (e) {}
+    }
+
     function mostraPlayer() {
       if (avviato) return;
       avviato = true;
@@ -146,7 +158,7 @@
             },
             onStateChange: function (evento) {
               if (stavaPartendo(evento.data)) mostraPlayer();
-              if (evento.data === 0 && sezione) scorriA(sezione); // 0 = video finito
+              if (evento.data === 0) tornaCopertina(); // 0 = video finito: torna la copertina
             }
           }
         });

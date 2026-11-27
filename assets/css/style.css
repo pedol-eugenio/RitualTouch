@@ -1162,6 +1162,23 @@ label {
   color: var(--beige);
 }
 
+/* Ritual Touch in una frase */
+.una-frase {
+  display: grid;
+  gap: 12px;
+  padding: 0 0 28px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(201, 166, 107, 0.45);
+}
+.una-frase__testo {
+  font-family: var(--font-titoli);
+  font-size: 28px;
+  line-height: 1.25;
+}
+.una-frase__testo em {
+  color: var(--oro-etichetta);
+}
+
 /* ---------- 6. Chiusura, domande frequenti e contatto ---------- */
 .chiusura {
   padding: 64px 0 40px;
