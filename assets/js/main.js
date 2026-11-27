@@ -600,6 +600,7 @@
       prec.disabled = i === 0;
       succ.disabled = i === carte.length - 1;
       if (i > 0) box.classList.add("carosello--visto");
+      box.classList.toggle("carosello--tutto", binario.scrollWidth <= binario.clientWidth + 4);
     }
     function vaiA(i) {
       var c = carte[Math.max(0, Math.min(carte.length - 1, i))];

@@ -1350,6 +1350,11 @@ label {
 .carosello--visto .carosello__suggerimento {
   visibility: hidden;
 }
+/* Se tutti i messaggi stanno già sullo schermo, frecce e punti non servono */
+.carosello--tutto .carosello__controlli,
+.carosello--tutto .carosello__suggerimento {
+  display: none;
+}
 
 /* ---------- 6. Chiusura, domande frequenti e contatto ---------- */
 .chiusura {
