@@ -1067,7 +1067,7 @@ label {
 }
 .modo {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   padding-left: 14px;
   border-left: 2px solid var(--oro);
